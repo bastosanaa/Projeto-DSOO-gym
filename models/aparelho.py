@@ -1,0 +1,2 @@
+class Aparelho():
+    pass
