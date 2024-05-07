@@ -1,19 +1,19 @@
 from abc import ABC, abstractmethod
-from endereco import Endereco
+from turno import Turno
 
 
 class Pessoa(ABC):
     @abstractmethod
     def __init__(self, nome: str, numero_telefone: int, email: str,
-                 endereco: Endereco):
+                 turno: Turno):
         if isinstance(nome, str):
             self.__nome = nome
         if isinstance(numero_telefone, int):
             self.__numero_telefone = numero_telefone
         if isinstance(email, str):
             self.__email = email
-        if isinstance(endereco, Endereco):
-            self.__endereco = endereco
+        if isinstance(turno, Turno):
+            self.__turno = turno
 
     @property
     def nome(self):
@@ -43,10 +43,10 @@ class Pessoa(ABC):
             self.__email = email
 
     @property
-    def endereco(self):
-        return self.__endereco
+    def turno(self):
+        return self.__turno
 
-    @endereco.setter
-    def endereco(self, endereco):
-        if isinstance(endereco, Endereco):
-            self.__endereco = endereco
+    @turno.setter
+    def turno(self, turno):
+        if isinstance(turno, Turno):
+            self.__turno = turno

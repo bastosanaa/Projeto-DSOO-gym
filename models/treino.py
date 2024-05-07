@@ -1,7 +1,6 @@
-from exercicio import Exercicio
 
 
-class Treino():
+class Ficha():
     def __init__(self, dia_semana: int, tempo_duracao: int,
                  exercicio: Exercicio):
         if isinstance(dia_semana, int):
