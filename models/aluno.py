@@ -10,3 +10,7 @@ class Aluno(Pessoa):
         if isinstance(matricula, Matricula):
             self.__matricula = matricula
         self.__fichas = []
+
+    @property
+    def fichas(self):
+        return self.__fichas
