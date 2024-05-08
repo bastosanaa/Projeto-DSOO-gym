@@ -2,13 +2,14 @@
 
 class Ficha():
     def __init__(self, dia_semana: int, tempo_duracao: int,
-                 exercicio: Exercicio):
+                 exercicio):
         if isinstance(dia_semana, int):
             self.__dia_semana = dia_semana
         if isinstance(tempo_duracao, int):
             self.__tempo_duracao = tempo_duracao
-        if isinstance(exercicio, Exercicio):
-            self.__exercicio = exercicio
+        #----- Exercicio = Enum ???? -----
+        # if isinstance(exercicio, Exercicio):
+        #     self.__exercicio = exercicio
 
     @property
     def dia_semana(self):
@@ -28,11 +29,11 @@ class Ficha():
         if isinstance(tempo_duracao, int):
             self.__tempo_duracao = tempo_duracao
 
-    @property
-    def exercicio(self):
-        return self.__exericio
+    # @property
+    # def exercicio(self):
+    #     return self.__exericio
 
-    @exercicio.setter
-    def exercicio(self, exercicio):
-        if isinstance(exercicio, Exercicio):
-            self.__exercicio = exercicio
+    # @exercicio.setter
+    # def exercicio(self, exercicio):
+    #     if isinstance(exercicio, Exercicio):
+    #         self.__exercicio = exercicio

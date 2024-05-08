@@ -9,8 +9,9 @@ class Aluno(Pessoa):
         super().__init__(nome, numero_telefone, email, turno)
         if isinstance(matricula, Matricula):
             self.__matricula = matricula
-        self.__fichas = []
+        self.__ficha = ''
+
 
     @property
-    def fichas(self):
-        return self.__fichas
+    def ficha(self):
+        return self.__ficha
