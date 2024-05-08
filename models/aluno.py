@@ -11,6 +11,14 @@ class Aluno(Pessoa):
             self.__matricula = matricula
         self.__ficha = ''
 
+    @property
+    def matricula(self):
+        return self.__matricula
+
+    @matricula.setter
+    def matricula(self, matricula):
+        if isinstance(matricula, Matricula):
+            self.__matricula = matricula
 
     @property
     def ficha(self):
