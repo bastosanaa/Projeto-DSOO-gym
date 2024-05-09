@@ -11,6 +11,11 @@ class Professor(Pessoa):
     @property
     def salario(self):
         return self.__salario
+    
+    @salario.setter
+    def salario(self, salario):
+        self.__salario = salario
+        
 
     @property
     def aulas_extras(self):
