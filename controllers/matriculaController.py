@@ -10,6 +10,11 @@
 + calcula_plano_mais_vendido()
 '''
 from models.plano import Plano
+from alunoController import ControladorAluno
+
 
 class ControladorMatricula():
-    pass
+    def __init__(self):
+        self.__controlador_aluno = ControladorAluno()
+        
+        
