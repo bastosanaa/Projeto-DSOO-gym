@@ -17,17 +17,60 @@ class AlunoView():
         print("5 - Cancelar Matricula")
         print("6 - Calcular Aluno Por Turno")
         print("0 - retornar")
-        opçao = int(input("Escolha a opção: "))
+        opcao = int(input("Escolha a opção: "))
 
-        return opçao
+        if opcao == 1:
+            self.inserir_turno()
+        elif opcao == 2:
+            self.retirar_turno()
+        elif opcao == 3:
+            self.mostrar_treino_ficha()
+        elif opcao == 4:
+            nome = input("Digite o nome do aluno: ")
+            self.mostrar_dados_matricula(nome)
+        elif opcao == 5:
+            nome = input("Digite o nome do aluno: ")
+            self.cancelar_matricula(nome)
+        elif opcao == 6:
+            self.calcular_aluno_por_turno()
+        elif opcao == 0:
+            return
+        else:
+            print("Opção inválida. Tente novamente.")
+            self.mostra_opcoes()
 
-    def mostrar_matricula(self, dados_matricula):
-        print("ID da matrícula: ", dados_matricula["id_matricula"])
-        if isinstance(plano, Plano):
-            print("Plano: ", dados_matricula["plano"])
-        print("Data de inicio: ", dados_matricula["data_inicio"])
-        print("Data de termino: ", dados_matricula["data_termino"])
-        print("Data de vencimento do pagamento: ",
-              dados_matricula["data_vencimento_pagamento"])
-        print("Mensalidade: ", dados_matricula["mensalidade"])
-        print("\n")
+
+    def mostrar_dados_matricula(self, nome):
+        matricula = self.__controlador_aluno.buscar_matricula_por_nome(nome)
+        if matricula is not None:
+            print("-------- Dados da Matrícula ----------")
+            print("Nome: ", matricula.nome)
+            print("Plano: ", matricula.plano)
+            print("Data de Início: ", matricula.data_inicio)
+            print("Data de Término: ", matricula.data_termino)
+            print("Valor: ", matricula.valor)
+        else:
+            print("Matrícula não encontrada.")
+
+    def escolher_turno(self):
+        print("Escolha o turno:")
+        print("1 - Manhã")
+        print("2 - Tarde")
+        print("3 - Noite")
+        turno = int(input("Escolha o turno: "))
+
+        return turno
+    
+    def mostrar_treino_ficha(self, ficha):
+        print("-------- Treinos da Ficha ----------")
+        for treino in ficha:
+            print("Exercício: ", treino.exercicio)
+            print("Repetições: ", treino.repeticoes)
+            print("Carga: ", treino.carga)
+            print("------------------------------")
+    
+    def cancelar_matricula(self):
+        nome = input("Digite o nome do aluno: ")
+        self.__controlador_aluno.cancelar_matricula(nome)
+        print("Matrícula cancelada com sucesso.")
+

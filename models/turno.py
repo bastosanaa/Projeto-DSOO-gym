@@ -1,7 +1,7 @@
-import enum
+from enum import Enum
 
 
-class Turno(enum):
+class Turno(Enum):
     matutino = 1
     vespertino = 2
     noturno = 3

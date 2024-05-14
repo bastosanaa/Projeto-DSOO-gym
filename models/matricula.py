@@ -61,3 +61,4 @@ class Matricula():
     @data_termino.setter
     def data_termino(self, data_termino):
         self.__data_termino = data_termino
+
