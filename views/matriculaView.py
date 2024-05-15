@@ -32,3 +32,6 @@ class matriculaView():
     
     def inserir_data_terminio(self):
         pass
+    
+    def mostrar_mensagem(self, mensagem):
+        print(mensagem)

@@ -15,7 +15,7 @@ class AlunoView():
         print("3 - Mostrar Treino Ficha")
         print("4 - Mostrar Matricula")
         print("5 - Cancelar Matricula")
-        print("6 - Calcular Aluno Por Turno")
+        print("6 - Fazer matricula")
         print("0 - retornar")
         opcao = int(input("Escolha a opção: "))
 
@@ -61,16 +61,34 @@ class AlunoView():
 
         return turno
     
+    def escolher_plano(self):
+        print("Escolha o plano:")
+        print("1 - Gold")
+        print("2 - Silver")
+        print("3 - Diamond")
+        plano = int(input("Escolha o plano: "))
+
+        return Plano(plano)
+    
+    
     def mostrar_treino_ficha(self, ficha):
         print("-------- Treinos da Ficha ----------")
         for treino in ficha:
             print("Exercício: ", treino.exercicio)
             print("Repetições: ", treino.repeticoes)
-            print("Carga: ", treino.carga)
             print("------------------------------")
+    
+    def realizar_matricula(self):
+        nome = input("Digite o nome do aluno: ")
+        turno = self.escolher_turno()
+        plano = self.escolher_plano()
+        self.__controlador_aluno.realizar_matricula(nome, turno, plano)
+        print("Matrícula realizada com sucesso.")
     
     def cancelar_matricula(self):
         nome = input("Digite o nome do aluno: ")
         self.__controlador_aluno.cancelar_matricula(nome)
         print("Matrícula cancelada com sucesso.")
 
+    def mostrar_mensagem(self, mensagem):
+        print(mensagem)
