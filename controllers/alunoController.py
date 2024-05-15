@@ -40,8 +40,6 @@ class ControladorAluno():
                 if matricula.aluno.nome == nome:
                     matricula_encontrada = matricula
                     break
-            if matricula_encontrada:
-                break
         if matricula_encontrada:
             self.__tela_aluno.mostrar_dados_matricula(matricula_encontrada)
         else:
@@ -67,8 +65,6 @@ class ControladorAluno():
                 if matricula.ficha == ficha:
                     aluno_existente = aluno
                     break
-            if aluno_existente:
-                break
         if aluno_existente:
             self.__tela_aluno.mostrar_dados_ficha(aluno_existente, ficha)
         else:
@@ -82,8 +78,6 @@ class ControladorAluno():
                 if m.id_matricula == id_matricula:
                     matricula = m
                     break
-            if matricula:
-                break
         if matricula:
             self.__tela_aluno.mostrar_dados_matricula(matricula)
         else:
@@ -109,8 +103,6 @@ class ControladorAluno():
                 if matricula.id_matricula == id_matricula:
                     matricula = matri
                     break
-            if matricula: 
-                break
         if matricula:
             self.__alunos.remove(matricula)
             self.__tela_aluno.mostrar_mensagem("Matrícula cancelada com sucesso.")
