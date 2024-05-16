@@ -27,7 +27,7 @@
 	      <i><strong>O plano é apenas um tipo por aluno</strong></i>
 
 - <p>O<strong> turno</strong> é um classe enum, que terá os períodos possíveis de treino</p>
-	 <i><strong>Poderá ser escolhido um ou dois turnos, tanto para professor quanto para aluno.</strong></i>
+	 <i><strong>Poderá ser escolhido apenas um, tanto para professor quanto para aluno.</strong></i>
 
 # Controlador
 - <p>O <strong>controlador de aluno</strong> será responsável por mostrar os treinos contidos nas fichas do aluno e a matrícula do mesmo, retirar ou adicionar o aluno por turno, calcular a quantidade de aluno por turno e calcular aluno por turno</p>
