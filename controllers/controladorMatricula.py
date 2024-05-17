@@ -4,7 +4,8 @@ from views.telaMatricula import TelaMatricula
 from models.plano import Plano
 
 class ControladorMatricula():
-    def __init__(self):
+    def __init__(self, controlador_sistema):
+        self.__controlador_sistema = controlador_sistema
         self.__controlador_aluno = ControladorAluno()
         self.__tela_matricula = TelaMatricula()
         self.__matriculas = []
@@ -35,9 +36,9 @@ class ControladorMatricula():
         
         def definir_mensalidade_de_acordo_com_plano(self, plano: Plano):
             mensalidade = 0
-            if plano == Plano.diamond:
+            if plano == Plano.Diamond:
                 mensalidade += 200.00
-            elif plano == Plano.gold:
+            elif plano == Plano.Gold:
                 mensalidade += 150.00
             else:
                 mensalidade += 100.00

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from turno import Turno
+from models.turno import Turno
 
 
 class Pessoa(ABC):

@@ -1,9 +1,12 @@
 from models.ficha import Ficha
-from controllers.controladorFicha import ControladorFicha
+# from controllers.controladorFicha import ControladorFicha
 
 class TelaFicha():
     def __init__(self):
-        self.__controlador_ficha = ControladorFicha()
+        self.__controlador_ficha = None
+
+    def set_controlador(self, controlador_ficha):
+        self.__controlador_ficha = controlador_ficha
 
     def mostrar_mensagem(self, mensagem):
         print(mensagem)

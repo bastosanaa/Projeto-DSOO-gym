@@ -2,16 +2,17 @@ from models.professor import Professor
 from views.telaProfessor import TelaProfessor
 
 class ControladorProfessor():
-    def __init__(self):
+    def __init__(self, controlador_sistema):
+        self.__controlador_sistema = controlador_sistema
         self.__tela_professor = TelaProfessor()
-        self.__professores = [Professor]
+        self.__professores = []
 
     @property
     def professores(self):
         return self.__professores
 
-    def definir_salario(self):
-        pass
+    def mostrar_menu_inicial(self):
+        self.__tela_professor.mostrar_menu_inicial()
 
     def acessar_professor_pelo_nome(self, nome):
         for prof in self.professores:

@@ -1,4 +1,4 @@
-from controllers.matriculaController import ControladorMatricula
+from controllers.controladorMatricula import ControladorMatricula
 from controllers.controladorAluno import ControladorAluno
 from models.plano import Plano
 

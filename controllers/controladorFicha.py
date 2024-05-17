@@ -5,9 +5,10 @@ import random
 
 
 class ControladorFicha():
-    def __init__(self):
+    def __init__(self,controlador_sistema):
+        self.__controlador_sistema = controlador_sistema
         self.__tela_ficha = TelaFicha()
-        self.__controlador_professor = ControladorProfessor()
+        # self.__controlador_professor = ControladorProfessor()
         self.__fichas = []
 
     @property
@@ -32,7 +33,8 @@ class ControladorFicha():
         
         while not professor:
             nome_professor = self.__tela_ficha.pegar_input("Escolha um professor pelo nome: ")
-            professor = self.__controlador_professor.acessar_professor_pelo_nome(nome_professor)
+            # professor = self.__controlador_professor.acessar_professor_pelo_nome(nome_professor)
+            professor = self.__controlador_sistema.controlador_professor.acessar_professor_pelo_nome(nome_professor)
             if not professor:
                 self.__tela_ficha.mostrar_mensagem("Professor não encontrado, tente novamente.")
         

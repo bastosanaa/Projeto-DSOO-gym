@@ -1,6 +1,6 @@
 from models.turno import Turno
-from pessoa import Pessoa
-from matricula import Matricula
+from models.pessoa import Pessoa
+from models.matricula import Matricula
 
 
 class Aluno(Pessoa):

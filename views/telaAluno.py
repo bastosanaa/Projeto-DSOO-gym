@@ -7,7 +7,7 @@ class TelaAluno():
         self.__controlador_aluno = ControladorAluno()
         pass
 
-    def mostra_opcoes(self):
+    def mostrar_menu_inicial(self):
         print("-------- Aluno ----------")
         print("Escolha a opção:")
         print("1 - Inserir Turno")
@@ -37,7 +37,7 @@ class TelaAluno():
             return
         else:
             print("Opção inválida. Tente novamente.")
-            self.mostra_opcoes()
+            self.mostrar_menu_inicial()
 
 
     def mostrar_dados_matricula(self, nome):

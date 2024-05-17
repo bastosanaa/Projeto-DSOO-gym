@@ -1,5 +1,5 @@
-from plano import Plano
-from turno import Turno
+from models.plano import Plano
+from models.turno import Turno
 
 class Matricula():
     def __init__(self, id_matricula: int, nome: str, turno: Turno, plano: Plano,
@@ -61,5 +61,5 @@ class Matricula():
     def data_termino(self, data_termino):
         self.__data_termino = data_termino
 
-m = Matricula(1, "Gold", 2021, 100.00, 2022, 2023)
-m.opcoes()
+# m = Matricula(1, "Gold", 2021, 100.00, 2022, 2023)
+# m.opcoes()
