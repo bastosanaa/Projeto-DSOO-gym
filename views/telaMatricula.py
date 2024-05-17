@@ -1,8 +1,8 @@
 from controllers.matriculaController import ControladorMatricula
-from controllers.alunoController import ControladorAluno
+from controllers.controladorAluno import ControladorAluno
 from models.plano import Plano
 
-class matriculaView():
+class TelaMatricula():
     def __init__(self):
         self.__controlador_matricula = ControladorMatricula()
         self.__controlador_aluno = ControladorAluno()

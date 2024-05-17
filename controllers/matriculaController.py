@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
-from alunoController import ControladorAluno
-from views.matriculaView import matriculaView
+from controllers.controladorAluno import ControladorAluno
+from views.telaMatricula import TelaMatricula
 from models.plano import Plano
 
 class ControladorMatricula():
     def __init__(self):
         self.__controlador_aluno = ControladorAluno()
-        self.__tela_matricula = matriculaView()
+        self.__tela_matricula = TelaMatricula()
         self.__matriculas = []
         self.__planos = planos
         

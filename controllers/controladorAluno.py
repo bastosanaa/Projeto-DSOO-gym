@@ -1,5 +1,5 @@
 from models.aluno import Aluno
-from views import AlunoView
+from views.telaAluno import TelaAluno
 from models.matricula import Matricula
 from models.ficha import Ficha
 import random
@@ -7,7 +7,7 @@ from controllers.matriculaController import ControladorMatricula
 
 class ControladorAluno():
     def __init__(self):
-        self.__tela_aluno = AlunoView()
+        self.__tela_aluno = TelaAluno()
         self.__controlador_aluno = ControladorAluno()
         self.__controlador_matricula = ControladorMatricula()
         self.__alunos = []

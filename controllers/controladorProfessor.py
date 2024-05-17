@@ -1,5 +1,5 @@
 from models.professor import Professor
-from views.professorView import TelaProfessor
+from views.telaProfessor import TelaProfessor
 
 class ControladorProfessor():
     def __init__(self):

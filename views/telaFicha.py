@@ -22,11 +22,13 @@ class TelaFicha():
             if resposta_usuario == "1":
                 self.__controlador_ficha.mostrar_fichas()
             elif resposta_usuario == "2":
-                pass
+                self.__controlador_ficha.criar_ficha()
             elif resposta_usuario == "3":
-                pass
+                id = input("Qual o id da ficha que você deseja excluir?")
+                print("digite 0 para voltar ao menu inicial")
+                if id == "0":
+                    continue
+                self.__controlador_ficha.excluir_ficha_pelo_id(id)
             else:
                 print("Opção inválida. Tente novamente.")
 
-
-    
