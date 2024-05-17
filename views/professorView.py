@@ -1,4 +1,4 @@
-from controllers.professorController import ControladorProfessor
+from controllers.controladorProfessor import ControladorProfessor
 
 
 class TelaProfessor():
@@ -6,17 +6,21 @@ class TelaProfessor():
         self.__controlador_professor = ControladorProfessor()
 
     def mostrar_menu_inicial(self):
-        print("OPÇOES")
-        print("1.mostrar professores contratados")
-        print("2.cadastrar")
-        resposta_usuario = input("insira a opção escolhida")
-        if resposta_usuario == "1":
-            self.mostrar_professores()
-        else:
-            pass
+        while True:
+            print("-------- Professores ----------")
+            print("1 - mostrar professores contratados")
+            print("2 - cadastrar")
+            resposta_usuario = input("Insira a opção escolhida: ")
+            if resposta_usuario == "1":
+                self.mostrar_professores()
+            elif resposta_usuario == "2":
+                self.cadastrar_professor()
+            else:
+                print("Opção inválida. Tente novamente.")
 
     def mostrar_professores(self):
-        print(self.__controlador_professor.professores)
+        for professor in self.__controlador_professor.professores:
+            print(professor.nome)
         resposta_usuario = input("deseja fazer alterações na lista de professores cadastrados? (s / n)")
         if resposta_usuario == "s":
             self.mostrar_opcoes_alterecao()
@@ -27,21 +31,24 @@ class TelaProfessor():
 
 
     def mostrar_opcoes_alterecao(self):
-        print("OPÇOES DE ALTERAÇÃO")
-        print("1.cadastrar novo professor")
-        print("2.excluir um professor do sistema")
-        print("3.alterar professor existente")
-        print("4.voltar ao menu inicial")
-        resposta_usuario = input("insira a opção escolhida")
-        if resposta_usuario == "1":
-            self.cadastrar_professor()
-        elif resposta_usuario == "2":
-            self.remover_professor()
-        elif resposta_usuario == "3":
-            self.alterar_professor_existente()
-        else:
-            self.mostrar_menu_inicial()
-        
+        while True:
+            print("-------- Ficha ----------")
+            print("Opções de alteração")
+            print("1 - cadastrar novo professor")
+            print("2 - excluir um professor do sistema")
+            print("3 - alterar turno de um professor cadastrado")
+            print("4 - voltar ao menu inicial")
+            resposta_usuario = input("Insira a opção escolhida: ")
+            if resposta_usuario == "1":
+                self.cadastrar_professor()
+            elif resposta_usuario == "2":
+                self.remover_professor()
+            elif resposta_usuario == "3":
+                self.alterar_turno()
+            elif resposta_usuario == "4":
+                return
+            else:
+                print("Opção inválida. Tente novamente.")
 
     def cadastrar_professor(self):
         print("insira as informações de cadastro do professor:")
@@ -51,6 +58,7 @@ class TelaProfessor():
         turno = input("EXIBIR TURNOS PRE-DEFINIDOS AQUI-SELECT")
         salario = input("salário")
         self.__controlador_professor.cadastrar_professor(nome, telefone, email, turno, salario)
+        print(f'Professor {nome} cadastrado com sucesso!')
         
 
     def remover_professor(self):
@@ -58,27 +66,24 @@ class TelaProfessor():
         nome = input("nome")
         email = input("email")
         self.__controlador_professor.remover_professor(nome, email)
+        print(f'Professor {nome} removido com sucesso!')
     
     #IMPLEMENTANDO
-    def alterar_professor_existente(self):
-        print("que alteração você deseja fazer?")
-        print("1.inserir turno na carga horária")
-        print("2.remover turno da carga horária")
-        resposta_usuario = input("insira a opção escolhida")
+    def alterar_turno(self):
         prof_cadastrado = None
-        if resposta_usuario == "1":
-            while not prof_cadastrado:
-                prof_input = input("Selecione um professor para alterar turnos")
-                prof_cadastrado = self.__controlador_professor.acessar_professor_pelo_nome(prof_input)
-                # while professor.turnos == 2 -> erro
-                # select turno
-                self.__controlador_professor.adicionar_turno_professor
-        if resposta_usuario == "2":
-            while not prof_cadastrado:
-                prof_input = input("Selecione um professor para alterar turnos")
-                self.__controlador_professor.acessar_professor_pelo_nome(prof_input)
-    
+        while not prof_cadastrado:
+            prof_input = input("Insira o nome de um professor para alterar turnos")
+            prof_cadastrado = self.__controlador_professor.acessar_professor_pelo_nome(prof_input)
+            if not prof_cadastrado:
+                print("Professor nao encontrado")
+        print(f'O turno atual de {prof_cadastrado} é {prof_cadastrado.turno}')
+        continuar = input("continuar alteração de turno? (s / n)")
+        if continuar == "s":
+            print("PRINTAR TURNOS SELECT")
+            prof_cadastrado.turno = input("selecione o código do novo turno")
+            print(f'O turno atual de {prof_cadastrado} é {prof_cadastrado.turno}')
 
-    def exibir_mensagem_erro(self, mensagem):
+    def mostrar_mensagem(self, mensagem):
         print(mensagem)
-        
+
+

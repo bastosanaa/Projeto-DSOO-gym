@@ -1,10 +1,10 @@
-from pessoa import Pessoa
-from turno import Turno
+from models.pessoa import Pessoa
+from models.turno import Turno
 
 
 class Professor(Pessoa):
-    def __init__(self, nome: str, numero_telefone: int, email: str, cargo: str, turno: str, salario: float):
-        super().__init__(nome, numero_telefone, email, cargo, turno)
+    def __init__(self, nome: str, numero_telefone: int, email: str, turno: str, salario: float):
+        super().__init__(nome, numero_telefone, email, turno)
         self.__salario = salario
         self.__aulas_extras = []
     
@@ -15,8 +15,3 @@ class Professor(Pessoa):
     @salario.setter
     def salario(self, salario):
         self.__salario = salario
-        
-
-    @property
-    def aulas_extras(self):
-        return self.__aulas_extras

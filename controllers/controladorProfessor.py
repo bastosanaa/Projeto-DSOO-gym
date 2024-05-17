@@ -17,14 +17,17 @@ class ControladorProfessor():
         for prof in self.professores:
             if prof.nome == nome:
                 return prof
-        mensagem_erro = "O professor inserido não está cadastrado"
-        self.__tela_professor.exibir_mensagem_erro(mensagem_erro)
+        # mensagem_erro = "O professor inserido não está cadastrado"
+        # self.__tela_professor.mostrar_mensagem(mensagem_erro)
         return None
 
 
-    def cadastrar_professor(self, nome:str, telefone, email, turno, salario):
+    def cadastrar_professor(self, nome, telefone, email, turno, salario):
+        if self.acessar_professor_pelo_nome(nome):
+            self.__tela_professor.mostrar_mensagem("Já existe um professor cadastrado com esse nome")
+            return None
         novo_professor = Professor(nome, telefone, email, turno, salario)
-        #VERIFICAR SE PROFESSOR JA EXISTE, CASO JA, EXIBIR NA TELA
+        
         self.__professores.append(novo_professor)
 
     def remover_professor(self, nome, email):
@@ -32,13 +35,9 @@ class ControladorProfessor():
             if professor.nome == nome and professor.email == email:
                 self.__professores.remove(professor)
             else:
-                self.__tela_professor.exibir_mensagem_erro("professor nao encontrado")
+                self.__tela_professor.mostrar_mensagem("professor nao encontrado")
 
-    def adicionar_turno_professor(self,professor, turno):
+    def alterar_turno(self):
         pass
-
-    def remover_turno_professor(self, professor, turno):
-        pass
-
         
         
