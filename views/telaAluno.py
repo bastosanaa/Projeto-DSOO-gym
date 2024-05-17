@@ -10,10 +10,9 @@ class TelaAluno():
     def mostrar_menu_inicial(self):
         print("-------- Aluno ----------")
         print("Escolha a opção:")
-        print("1 - Inserir Turno")
-        print("2 - Retirar Turno")
-        print("3 - Mostrar Treino Ficha")
-        print("4 - Mostrar Matricula")
+        print("1 - Alterar Turno")
+        print("2 - Mostrar Treino Ficha")
+        print("3 - Mostrar Matricula")
         print("5 - Cancelar Matricula")
         print("6 - Fazer matricula")
         print("0 - retornar")
@@ -39,7 +38,6 @@ class TelaAluno():
             print("Opção inválida. Tente novamente.")
             self.mostrar_menu_inicial()
 
-
     def mostrar_dados_matricula(self, nome):
         matricula = self.__controlador_aluno.buscar_matricula_por_nome(nome)
         if matricula is not None:
@@ -52,23 +50,6 @@ class TelaAluno():
         else:
             print("Matrícula não encontrada.")
 
-    def escolher_turno(self):
-        print("Escolha o turno:")
-        print("1 - Manhã")
-        print("2 - Tarde")
-        print("3 - Noite")
-        turno = int(input("Escolha o turno: "))
-
-        return turno
-    
-    def escolher_plano(self):
-        print("Escolha o plano:")
-        print("1 - Gold")
-        print("2 - Silver")
-        print("3 - Diamond")
-        plano = int(input("Escolha o plano: "))
-        return Plano(plano)
-    
     
     def mostrar_treino_ficha(self, ficha):
         print("-------- Treinos da Ficha ----------")
@@ -76,13 +57,6 @@ class TelaAluno():
             print("Exercício: ", treino.exercicio)
             print("Repetições: ", treino.repeticoes)
             print("------------------------------")
-    
-    def realizar_matricula(self):
-        nome = input("Digite o nome do aluno: ")
-        turno = self.escolher_turno()
-        plano = self.escolher_plano()
-        self.__controlador_aluno.realizar_matricula(nome, turno, plano)
-        print("Matrícula realizada com sucesso.")
     
     def cancelar_matricula(self):
         nome = input("Digite o nome do aluno: ")

@@ -2,7 +2,6 @@ from models.aluno import Aluno
 from views.telaAluno import TelaAluno
 from models.matricula import Matricula
 from models.ficha import Ficha
-import random
 # from controllers.controladorMatricula import ControladorMatricula
 
 class ControladorAluno():
@@ -25,24 +24,6 @@ class ControladorAluno():
     def mostrar_menu_inicial(self):
         self.__tela_aluno.mostrar_menu_inicial()
 
-    def realizar_matricula(self, nome, turno, plano):
-        aluno_existente = None
-        for aluno in self.__alunos:
-            if aluno.nome == nome:
-                aluno_existente = aluno
-                break
-        if aluno_existente:
-            self.__tela_aluno.mostrar_mensagem("Aluno já está matriculado.")
-        else:
-            id_matricula = random.randint(1000, 9999)
-            data_inicio = self.__controlador_sistema.controlador_matricula.definir_data_inicio()
-            mensalidade = self.__controlador_sistema.controlador_matricula.definir_mensalidade_de_acordo_com_plano(plano)
-            data_vencimento_pagamento = self.__controlador_sistema.controlador_matricula.definir_data_vencimento_pagamento(data_inicio)
-            data_termino = self.__controlador_sistema.controlador_matricula.definir_data_termino(data_inicio)
-            matricula = Matricula(id_matricula, nome, turno, plano, data_inicio, mensalidade, data_vencimento_pagamento, data_termino)
-            self.__alunos.append(matricula)
-            self.__controlador_sistema.controlador_matricula.matriculas.append(matricula)
-            self.__tela_aluno.mostrar_mensagem("Matrícula realizada com sucesso.")
 
     def buscar_matricula_por_nome(self, nome):
         matricula_encontrada = None
@@ -67,47 +48,6 @@ class ControladorAluno():
             self.__tela_aluno.mostrar_dados_matricula(matricula)
         else:
             self.__tela_aluno.mostrar_mensagem("Matrícula não encontrada.")
-
-    def cancelar_matricula(self, id_matricula):
-        matricula = None
-        for aluno in self.__alunos:
-            for matri in aluno.matriculas:
-                if matricula.id_matricula == id_matricula:
-                    matricula = matri
-                    break
-        if matricula:
-            self.__alunos.remove(matricula)
-            self.__tela_aluno.mostrar_mensagem("Matrícula cancelada com sucesso.")
-        else:
-            self.__tela_aluno.mostrar_mensagem("Matrícula não encontrada")
-    
-    def renovar_matricula(self, id_matricula):
-        matricula = None
-        for aluno in self.__alunos:
-            for matri in aluno.matriculas:
-                if matricula.id_matricula == id_matricula:
-                    matricula = matri
-                    break
-        if matricula:
-            matricula.data_inicio = self.__controlador_sistema.controlador_matricula.definir_data_inicio()
-            matricula.data_vencimento_pagamento = self.__controlador_sistema.controlador_matricula.definir_data_vencimento_pagamento(matricula.data_inicio)
-            matricula.data_termino = self.__controlador_sistema.controlador_matricula.definir_data_termino(matricula.data_inicio)
-            self.__tela_aluno.mostrar_mensagem("Matrícula renovada com sucesso.")
-        else:
-            self.__tela_aluno.mostrar_mensagem("Matrícula não encontrada.")
-
-    # def inserir_aluno_tuno(self, nome, turno):
-    #     aluno_existente = None
-    #     for aluno in self.__alunos:
-    #         if aluno.nome == nome:
-    #             aluno_existente = aluno
-    #             break
-    #     if aluno_existente:
-    #         self.__tela_aluno.mostrar_mensagem("Aluno já está inserido em um turno.")
-    #     else:
-    #         novo_aluno = Aluno(nome, turno)
-    #         self.__alunos.append(novo_aluno)
-    #         self.__tela_aluno.mostrar_mensagem("Aluno inserido em turno com sucesso.")
     
     def alterar_turno(self, nome, turno):
         aluno_existente = None
