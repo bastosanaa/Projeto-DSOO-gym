@@ -1,10 +1,9 @@
 from plano import Plano
-
+from turno import Turno
 
 class Matricula():
-    def __init__(self, id_matricula: int, plano: Plano, data_inicio: int,
-                 mensalidade: float, data_vencimento_pagamento: int,
-                 data_termino: int):
+    def __init__(self, id_matricula: int, nome: str, turno: Turno, plano: Plano,
+                data_inicio: int, mensalidade: float, data_vencimento_pagamento: int, data_termino: int):
         self.__id_matricula = id_matricula
         if isinstance(plano, Plano):
             self.__plano = plano
@@ -62,3 +61,5 @@ class Matricula():
     def data_termino(self, data_termino):
         self.__data_termino = data_termino
 
+m = Matricula(1, "Gold", 2021, 100.00, 2022, 2023)
+m.opcoes()

@@ -1,5 +1,6 @@
 from controllers.matriculaController import ControladorMatricula
 from controllers.alunoController import ControladorAluno
+from models.plano import Plano
 
 class matriculaView():
     def __init__(self):
@@ -8,30 +9,41 @@ class matriculaView():
     
     def opcoes(self):
         print("OPÇÕES")
-        print("1 - Mostrar matrícula")
-        print("2 - Realizar nova matricula")
-        print("3 - Cancelar matŕicula")    
+        print("1 - Mostrar mensalidade")
+        print("2 - Alterar plano de matrícula")
+        print("3 - Cancelar matrícula")
+        print("4 - Renovar matrícula")    
         opcao = int(input("Escolha a opção: "))
         if opcao == "1":
-            self.mostrar_matricula()
+            self.mostrar_mensalidade()
         elif opcao == "2":
-            pass
+            self.alterar_plano_matricula()
+        elif opcao == "3":
+            self.cancelar_matricula()
+        else:
+            print("Opção inválida!")
+            self.mostra_opcoes()
     
-    def mostrar_matricula(self):
-        pass
+    def alterar_plano(self):
+        id_matricula = input("Insira o número da matrícula (id): ")
+        novo_plano = input("Insira o novo plano desejado: ")
+        self.__controlador_matricula.alterar_plano(id_matricula, novo_plano)
+        print("Plano de matrícula alterado com sucesso!")
     
+    def mostrar_mensalidade(self):
+        id_matricula = input("Insira o número da matrícula (id): ")
+        mensalidade = self.__controlador_matricula.calcular_mensalidade(id_matricula)
+        print(f"A mensalidade da matrícula {id_matricula} é: R${mensalidade}")
     
-    def inserir_plano_matricula(self):
-        pass
-
-    def inserir_data_inicio(self):
-        pass
+    def cancelar_matricula(self):
+        id_matricula = input("Insira o número da matrícula (id): ")
+        self.__controlador_aluno.cancelar_matricula(id_matricula)
+        print("Matrícula cancelada com sucesso!")
     
-    def inserir_data_vencimento(self):
-        pass
-    
-    def inserir_data_terminio(self):
-        pass
+    def renovar_matricula(self):
+        id_matricula = input("Insira o número da matrícula (id): ")
+        self.__controlador_aluno.renovar_matricula(id_matricula)
+        print("Matrícula renovada com sucesso!")
     
     def mostrar_mensagem(self, mensagem):
         print(mensagem)

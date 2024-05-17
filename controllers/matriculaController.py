@@ -1,25 +1,13 @@
-'''
-- controlador_aluno: ControladorAluno
--tela_matricula: TelaMatricula
--matriculas: []
-
-+ definir_data_inicio()
-+ definir_data_vencimento_pagamento()
-+ definir_data_termino()
-+ definir_mensalidade_de_acordo_com_plano()
-+ calcula_plano_mais_vendido()
-'''
 from datetime import datetime, timedelta
 from alunoController import ControladorAluno
 from views.matriculaView import matriculaView
-from models.matricula import Matricula
 from models.plano import Plano
 
 class ControladorMatricula():
     def __init__(self):
         self.__controlador_aluno = ControladorAluno()
         self.__tela_matricula = matriculaView()
-        self.__matriculas = matriculas
+        self.__matriculas = []
         self.__planos = planos
         
         @property
@@ -38,9 +26,12 @@ class ControladorMatricula():
         
         def definir_data_termino(self, data_inicio_matricula):
             data_termino_matricula += data_inicio_matricula + timedelta(days=365)
-        
-        def mostrar_matricula(self, id_matricula):
-            pass
+    
+        def alterar_plano(self, id_matricula: int, novo_plano: Plano):
+            for matricula in self.__matriculas:
+                if matricula.id_matricula == id_matricula:
+                    matricula.plano = novo_plano
+                    break
         
         def definir_mensalidade_de_acordo_com_plano(self, plano: Plano):
             mensalidade = 0
@@ -64,3 +55,12 @@ class ControladorMatricula():
                         quantidade_vendas = vendas_plano
                         plano_mais_vendido = plano
             return plano_mais_vendido
+
+        def calcular_mesalidade(self, id_matricula):
+            mensalidade = 0
+            for matricula in self.__matriculas:
+                if matricula.id_matricula == id_matricula:
+                    mensalidade = matricula.mensalidade
+                    break
+            return mensalidade
+
