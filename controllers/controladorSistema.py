@@ -1,6 +1,5 @@
 from views.telaSistema import TelaSistema
 from controllers.controladorAluno import ControladorAluno
-from controllers.controladorMatricula import ControladorMatricula
 from controllers.controladorProfessor import ControladorProfessor
 from controllers.controladorFicha import ControladorFicha
 
@@ -8,7 +7,6 @@ class ControladorSistema:
     def __init__(self):
         self.__controlador_ficha = ControladorFicha(self)
         self.__controlador_professor = ControladorProfessor(self)
-        self.__controlador_matricula = ControladorMatricula(self)
         self.__controlador_aluno = ControladorAluno(self)
         self.__tela_sistema = TelaSistema()
 
@@ -19,10 +17,6 @@ class ControladorSistema:
     @property
     def controlador_professor(self):
         return self.__controlador_professor
-    
-    @property
-    def controlador_matricula(self):
-        return self.__controlador_matricula
 
     @property
     def controlador_aluno(self):

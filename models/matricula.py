@@ -1,16 +1,17 @@
 from models.plano import Plano
 from models.turno import Turno
-
 class Matricula():
-    def __init__(self, id_matricula: int, nome: str, turno: Turno, plano: Plano,
-                data_inicio: int, mensalidade: float, data_vencimento_pagamento: int, data_termino: int):
+    def __init__(self, id_matricula: int, turno: Turno, plano: Plano, mensalidade: float, aluno,
+                 data_inicio_matricula, data_vencimento_matricula, data_termino_matricula) -> None:
+        self.__data_inicio_matricula = data_inicio_matricula
+        self.__data_vevncimento_matricula = data_vencimento_matricula
+        self.__data_termino_matricula =  data_termino_matricula
         self.__id_matricula = id_matricula
-        if isinstance(plano, Plano):
-            self.__plano = plano
-        self.__data_inicio = data_inicio
+        self.__plano = plano
+        self.__turno = turno
         self.__mensalidade = mensalidade
-        self.__data_vencimento_pagamento = data_vencimento_pagamento
-        self.__data_termino = data_termino
+        self.__aluno = aluno
+
 
     @property
     def id_matricula(self):
@@ -30,14 +31,6 @@ class Matricula():
             self.__plano = plano
 
     @property
-    def data_inicio(self):
-        return self.__data_inicio
-
-    @data_inicio.setter
-    def data_inicio(self, data_inicio):
-        self.__data_inicio = data_inicio
-
-    @property
     def mensalidade(self):
         return self.__mensalidade
 
@@ -45,21 +38,44 @@ class Matricula():
     def mensalidade(self, mensalidade):
         self.__mensalidade = mensalidade
 
-    @property
-    def data_vencimento_pagamento(self):
-        return self.__data_vencimento_pagamento
-
-    @data_vencimento_pagamento.setter
-    def data_vencimento_pagamento(self, data_vencimento_pagamento):
-        self.__data_vencimento_pagamento = data_vencimento_pagamento
 
     @property
-    def data_termino(self):
-        return self.__data_termino
+    def aluno(self):
+        return self.__aluno
 
-    @data_termino.setter
-    def data_termino(self, data_termino):
-        self.__data_termino = data_termino
+    @aluno.setter
+    def aluno(self, aluno):
+            self.__aluno = aluno
 
-# m = Matricula(1, "Gold", 2021, 100.00, 2022, 2023)
-# m.opcoes()
+    @property
+    def data_inicio_matricula(self):
+        return self.__data_inicio_matricula
+
+    @data_inicio_matricula.setter
+    def data_inicio_matricula(self, data_inicio_matricula):
+        self.__data_inicio_matricula = data_inicio_matricula
+
+    @property
+    def data_vencimento_matricula(self):
+        return self.__data_vevncimento_matricula
+
+    @data_vencimento_matricula.setter
+    def data_vencimento_matricula(self, data_vencimento_matricula):
+        self.__data_vevncimento_matricula = data_vencimento_matricula
+
+    @property
+    def data_termino_matricula(self):
+        return self.__data_termino_matricula
+
+    @data_termino_matricula.setter
+    def data_termino_matricula(self, data_termino_matricula):
+        self.__data_termino_matricula = data_termino_matricula
+
+    @property
+    def turno(self):
+        return self.__turno
+
+    @turno.setter
+    def turno(self, turno):
+        if isinstance(turno, Turno):
+            self.__turno = turno
