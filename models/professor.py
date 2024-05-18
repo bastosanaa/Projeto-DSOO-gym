@@ -3,10 +3,9 @@ from models.turno import Turno
 
 
 class Professor(Pessoa):
-    def __init__(self, nome: str, numero_telefone: int, email: str, turno: str, salario: float):
+    def __init__(self, nome: str, numero_telefone: int, email: str, turno: Turno, salario: float):
         super().__init__(nome, numero_telefone, email, turno)
         self.__salario = salario
-        self.__aulas_extras = []
     
     @property
     def salario(self):

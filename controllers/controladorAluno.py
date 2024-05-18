@@ -7,10 +7,10 @@ from controllers.controladorFicha import ControladorFicha
 # from controllers.controladorMatricula import ControladorMatricula
 
 class ControladorAluno():
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__alunos = []
         self.__planos = [Plano.Diamond, Plano.Gold, Plano.Silver]
-        self.__contraladorFicha = ControladorFicha()
+        self.__contraladorFicha = ControladorFicha(self)
 
     @property
     def planos(self):

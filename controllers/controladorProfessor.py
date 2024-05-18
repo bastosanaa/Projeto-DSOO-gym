@@ -1,31 +1,24 @@
 from models.professor import Professor
-from views.telaProfessor import TelaProfessor
+from models.turno import Turno
 
 class ControladorProfessor():
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
-        self.__tela_professor = TelaProfessor()
         self.__professores = []
 
     @property
     def professores(self):
         return self.__professores
 
-    def mostrar_menu_inicial(self):
-        self.__tela_professor.mostrar_menu_inicial()
-
-    def acessar_professor_pelo_nome(self, nome):
+    def acessar_professor_pelo_nome(self, nome) -> Professor:
         for prof in self.professores:
             if prof.nome == nome:
                 return prof
-        # mensagem_erro = "O professor inserido não está cadastrado"
-        # self.__tela_professor.mostrar_mensagem(mensagem_erro)
         return None
 
 
     def cadastrar_professor(self, nome, telefone, email, turno, salario):
         if self.acessar_professor_pelo_nome(nome):
-            self.__tela_professor.mostrar_mensagem("Já existe um professor cadastrado com esse nome")
             return None
         novo_professor = Professor(nome, telefone, email, turno, salario)
         
@@ -35,10 +28,13 @@ class ControladorProfessor():
         for professor in self.__professores:
             if professor.nome == nome and professor.email == email:
                 self.__professores.remove(professor)
-            else:
-                self.__tela_professor.mostrar_mensagem("professor nao encontrado")
+                return professor
+        return None
 
-    def alterar_turno(self):
-        pass
-        
+    def escolher_turno(self, turno):
+        lista_opcoes = {1: Turno.matutino, 2: Turno.vespertino, 3: Turno.noturno}
+        lista_opcoes[int(turno)]
+
+    def alterar_turno(self,professor, turno):
+        professor.turno = turno
         

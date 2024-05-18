@@ -1,15 +1,9 @@
 from models.ficha import Ficha
-# from controllers.controladorFicha import ControladorFicha
+from controllers.controladorFicha import ControladorFicha
 
 class TelaFicha():
     def __init__(self):
-        self.__controlador_ficha = None
-
-    def set_controlador(self, controlador_ficha):
-        self.__controlador_ficha = controlador_ficha
-
-    def mostrar_mensagem(self, mensagem):
-        print(mensagem)
+        self.__controlador_ficha = ControladorFicha(self)
     
     def pegar_input(self, mensagem):
         return input(mensagem)
@@ -34,4 +28,14 @@ class TelaFicha():
                 self.__controlador_ficha.excluir_ficha_pelo_id(id)
             else:
                 print("Opção inválida. Tente novamente.")
+                
 
+    def mostar_fichas(self):
+        if self.__controlador_ficha.fichas:
+            for ficha in self.__controlador_ficha.fichas:
+                print(f'{ficha.id_ficha} - {ficha.descricao} por {ficha.prof_responsavel.nome}')
+        else:
+            print('Nenhuma ficha cadastrada')
+
+
+        

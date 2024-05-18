@@ -3,10 +3,7 @@ from controllers.controladorProfessor import ControladorProfessor
 
 class TelaProfessor():
     def __init__(self):
-        self.__controlador_professor = None
-
-    def set_controlador(self, controlador_professor):
-        self.__controlador_professor = controlador_professor
+        self.__controlador_professor = ControladorProfessor(self)
 
     def mostrar_menu_inicial(self):
         while True:
@@ -69,8 +66,11 @@ class TelaProfessor():
         email = input("email: ")
         turno = input("EXIBIR TURNOS PRE-DEFINIDOS AQUI-SELECT")
         salario = input("salário: ")
-        self.__controlador_professor.cadastrar_professor(nome, telefone, email, turno, salario)
-        print(f'Professor(a) {nome} cadastrado com sucesso!')
+        prof_cadastrado = self.__controlador_professor.cadastrar_professor(nome, telefone, email, turno, salario)
+        if prof_cadastrado:
+            print(f'Professor(a) {nome} cadastrado com sucesso!')
+        else: 
+            print("Este professor já está cadastrado")
         self.mostrar_menu_inicial()
         
 
@@ -79,8 +79,11 @@ class TelaProfessor():
         print("insira as informações do professor a ser removido:")
         nome = input("nome: ")
         email = input("email: ")
-        self.__controlador_professor.remover_professor(nome, email)
-        print(f'Professor {nome} removido com sucesso!')
+        professor_removido = self.__controlador_professor.remover_professor(nome, email)
+        if professor_removido:
+            print(f'Professor {nome} removido com sucesso!')
+        else:
+            print("professor nao encontrado")
         self.mostrar_menu_inicial()
     
     #IMPLEMENTANDO
@@ -95,13 +98,19 @@ class TelaProfessor():
         print(f'O turno atual de {prof_cadastrado} é {prof_cadastrado.turno}')
         continuar = input("continuar alteração de turno? (s / n)")
         if continuar == "s":
-            print("PRINTAR TURNOS SELECT")
-            prof_cadastrado.turno = input("selecione o código do novo turno")
+            turno = self.selecionar_turno()
+            self.__controlador_professor.alterar_turno(prof_cadastrado,turno)
             print(f'O turno atual de {prof_cadastrado} é {prof_cadastrado.turno}')
         self.mostrar_menu_inicial()
 
     def mostrar_mensagem(self, mensagem):
         print(mensagem)
 
+    def selecionar_turno(self):
+        print("1 - matutino")
+        print("2 - vespertino")
+        print("3 - noturno")
+        turno = input("Digite o código do turno escolhido: ")
+        return self.__controlador_professor.escolher_turno(turno)
 
-
+        
