@@ -3,6 +3,7 @@ import random
 from models.matricula import Matricula
 from models.plano import Plano
 from controllers.controladorFicha import ControladorFicha
+from models.aluno import Aluno
 
 # from controllers.controladorMatricula import ControladorMatricula
 
@@ -26,7 +27,9 @@ class ControladorAluno():
                     return aluno
             return None
     ################################ matricula ########################################
-    def realizar_matricula(self, aluno, plano, turno):
+
+    def realizar_matricula(self, nome_aluno, numero_telefone, email, plano, turno):
+        aluno = Aluno(nome_aluno, numero_telefone, email, turno, None)
         aluno_existente = self.get_aluno(aluno.nome)
         if aluno_existente:
             print("Aluno já matriculado.")
@@ -42,7 +45,7 @@ class ControladorAluno():
                               data_vencimento_matricula, data_termino_matricula)
         aluno.matricula = matricula
         self.__alunos.append(aluno)
-        print(f"Matrícula realizada com sucesso. ID da matrícula: {matricula.id_matricula}")
+        print(f"Matrícula realizada com sucesso.\nID da matrícula: {matricula.id_matricula}")
 
     def definir_mensalidade_de_acordo_com_plano(self, plano: Plano):
         mensalidade = 0.0
@@ -79,6 +82,22 @@ class ControladorAluno():
             print("Data de Término: ", matricula.data_termino_matricula)
             print("Data de Vencimento da Mensalidade: ", matricula.data_vencimento_matricula)
             print("Mensalidade: ", matricula.mensalidade)
+        else:
+            print("Matrícula não encontrada.")
+
+    def alterar_plano(self, id_matricula, novo_plano):
+        matricula = self.buscar_matricula_por_id(id_matricula)
+        if matricula:
+            matricula.plano = novo_plano
+            print("Plano alterado com sucesso.")
+        else:
+            print("Matrícula não encontrada.")
+
+    def alterar_turno(self, id_matricula, novo_turno):
+        matricula = self.buscar_matricula_por_id(id_matricula)
+        if matricula:
+            matricula.turno = novo_turno
+            print("Turno alterado com sucesso.")
         else:
             print("Matrícula não encontrada.")
 
