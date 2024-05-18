@@ -5,7 +5,7 @@ from models.plano import Plano
 
 class TelaAluno():
     def __init__(self):
-        self.__controlador_aluno = ControladorAluno()
+        self.__controlador_aluno = ControladorAluno(self)
 
     def mostrar_menu_inicial(self):
         print("-------- Aluno ----------")

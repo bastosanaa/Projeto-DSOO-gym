@@ -1,5 +1,6 @@
 from views.telaSistema import TelaSistema
 from views.telaProfessor import TelaProfessor
+from views.telaAluno import TelaAluno
 from controllers.controladorAluno import ControladorAluno
 from controllers.controladorProfessor import ControladorProfessor
 from controllers.controladorFicha import ControladorFicha
@@ -11,6 +12,7 @@ class ControladorSistema:
         self.__controlador_aluno = ControladorAluno(self)
         self.__tela_sistema = TelaSistema()
         self.__tela_professor = TelaProfessor()
+        self.__tela_aluno = TelaAluno()
 
     @property
     def controlador_ficha(self):
@@ -30,11 +32,11 @@ class ControladorSistema:
     def cadastra_professor(self):
         self.__tela_professor.mostrar_menu_inicial()
 
-    # def cadastra_aluno(self):
-    #     self.__controlador_aluno.mostrar_menu_inicial()
+    def cadastra_aluno(self):
+        self.__tela_aluno.mostrar_menu_inicial()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.cadastra_professor}
+        lista_opcoes = {1: self.cadastra_professor, 2: self.cadastra_aluno}
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes()
