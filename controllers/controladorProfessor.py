@@ -33,7 +33,7 @@ class ControladorProfessor():
 
     def escolher_turno(self, turno):
         lista_opcoes = {1: Turno.matutino, 2: Turno.vespertino, 3: Turno.noturno}
-        lista_opcoes[int(turno)]
+        return lista_opcoes[int(turno)]
 
     def alterar_turno(self,professor, turno):
         professor.turno = turno

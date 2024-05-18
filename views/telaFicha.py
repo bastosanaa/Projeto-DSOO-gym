@@ -4,10 +4,6 @@ from controllers.controladorFicha import ControladorFicha
 class TelaFicha():
     def __init__(self):
         self.__controlador_ficha = ControladorFicha(self)
-    
-    def pegar_input(self, mensagem):
-        return input(mensagem)
-        
 
     def mostrar_menu_inicial(self):
         while True:
@@ -17,9 +13,9 @@ class TelaFicha():
             print("3 - excluir ficha pelo id")
             resposta_usuario = input("Insira a opção escolhida: ")
             if resposta_usuario == "1":
-                self.__controlador_ficha.mostrar_fichas()
+                self.mostar_fichas()
             elif resposta_usuario == "2":
-                self.__controlador_ficha.criar_ficha()
+                self.criar_fichas()
             elif resposta_usuario == "3":
                 id = input("Qual o id da ficha que você deseja excluir?")
                 print("digite 0 para voltar ao menu inicial")
@@ -38,4 +34,30 @@ class TelaFicha():
             print('Nenhuma ficha cadastrada')
 
 
-        
+    def criar_fichas(self):
+        descricao = input("Descreva a ficha a criar: ")
+        professor = None
+        treinos = []
+        while not professor:
+            nome_professor = input("Escolha um professor pelo nome: ")
+            professor = self.__controlador_ficha.controlador_professor.acessar_professor_pelo_nome(nome_professor)
+            if not professor:
+                print("Professor não encontrado, insira um professor válido.")
+        n_treinos = int(input("Quantos treinos terá a ficha? "))
+        for _ in range(n_treinos):
+            treino = input("Insira o(s) grupo(s) muscular do treino: ")
+            treinos.append(treino)
+            input('Ficha criada com sucesso!')
+        return descricao, professor, treinos
+    
+    def excluir_ficha_pelo_id(self):
+        menu = input("deseja exibir as fichas? (s / n)")
+        if menu == "s":
+            self.mostar_fichas()
+        else:
+            id = input("Qual o id da ficha que você deseja excluir?")
+            ficha = self.__controlador_ficha.excluir_ficha_pelo_id(id)
+            if ficha:
+                print(f"Ficha de id:{id} excluida com sucesso")
+            else:
+                print("Ficha não encontrada")
