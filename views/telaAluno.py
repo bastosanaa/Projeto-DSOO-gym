@@ -8,6 +8,7 @@ class TelaAluno():
         self.__controlador_aluno = ControladorAluno(self)
 
     def mostrar_menu_inicial(self):
+        print()
         print("-------- Aluno ----------")
         print("Escolha a opção:")
         print("1 - Assuntos relacionados à matricula")
@@ -33,6 +34,7 @@ class TelaAluno():
             self.mostrar_menu_inicial()
 
     def assuntos_relacionados_a_matricula(self):
+        print()
         print("-------- Matrícula ----------")
         print("Escolha a opção:")
         print("1 - Realizar matrícula")
@@ -56,6 +58,7 @@ class TelaAluno():
             self.assuntos_relacionados_a_matricula()
 
     def assuntos_relacionados_a_ficha(self):
+        print()
         print("-------- Ficha ----------")
         print("Escolha a opção:")
         print("1 - Mostrar treinos da ficha")
@@ -72,6 +75,7 @@ class TelaAluno():
             self.assuntos_relacionados_a_ficha()
 
     def realizar_matricula(self):
+        print()
         nome_aluno = input("Digite o nome do aluno: ")
         numero_telefone = int(input("Digite o número de telefone do aluno (ex:DD999999999): "))
         email = input("Digite o email do aluno (ex:nome@bodylab.com): ")

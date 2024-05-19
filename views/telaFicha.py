@@ -7,6 +7,7 @@ class TelaFicha():
 
     def mostrar_menu_inicial(self):
         while True:
+            print()
             print("-------- Fichas ----------")
             print("1 - mostrar todas as fichas")
             print("2 - cadastrar ficha")
@@ -27,6 +28,7 @@ class TelaFicha():
                 
 
     def mostar_fichas(self):
+        print()
         if self.__controlador_ficha.fichas:
             for ficha in self.__controlador_ficha.fichas:
                 print(f'{ficha.id_ficha} - {ficha.descricao} por {ficha.prof_responsavel.nome}')
@@ -35,7 +37,8 @@ class TelaFicha():
 
 
     def criar_fichas(self):
-        descricao = input("Descreva a ficha a criar: ")
+        print()
+        descricao = input("Descreva o treino da ficha a criar: ")
         professor = None
         treinos = []
         while not professor:
@@ -51,6 +54,7 @@ class TelaFicha():
         return descricao, professor, treinos
     
     def excluir_ficha_pelo_id(self):
+        print()
         menu = input("deseja exibir as fichas? (s / n)")
         if menu == "s":
             self.mostar_fichas()
