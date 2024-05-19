@@ -31,3 +31,8 @@ class ControladorFicha():
                 self.__fichas.remove(ficha)
                 return ficha
             return None
+        
+    def calcular_professor_mais_criou_fichas(self):
+        professor_mais_criou = None
+        for ficha in self.__fichas:
+            pass
