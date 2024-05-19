@@ -38,3 +38,13 @@ class ControladorProfessor():
     def alterar_turno(self,professor, turno):
         professor.turno = turno
         
+    def calcular_professores_por_turno(self):
+        turno_matutino = 0 
+        turno_vespertino = 0
+        turno_noturno = 0
+        lista_turnos = {Turno.matutino: turno_matutino, Turno.vespertino: turno_vespertino, Turno.noturno: turno_noturno}
+        for professor in self.professores:
+            turno_encontrado = lista_turnos[professor.turno]
+            turno_encontrado += 1
+        return turno_matutino, turno_vespertino, turno_noturno
+

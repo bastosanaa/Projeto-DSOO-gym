@@ -4,8 +4,7 @@ from models.turno import Turno
 
 class Pessoa(ABC):
     @abstractmethod
-    def __init__(self, nome: str, numero_telefone: int, email: str,
-                 turno: Turno):
+    def __init__(self, nome: str, numero_telefone: int, email: str, turno: Turno):
         if isinstance(nome, str):
             self.__nome = nome
         if isinstance(numero_telefone, int):

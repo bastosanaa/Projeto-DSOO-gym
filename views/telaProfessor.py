@@ -12,6 +12,8 @@ class TelaProfessor():
             print("1 - Mostrar professores contratados")
             print("2 - Cadastrar novo professor")
             print("3 - Alterar professor já cadastrado")
+            print("4 - Vizualizar professor já cadastrado")
+            print("5 - Relatório de professores por turno")
             resposta_usuario = input("Insira a opção escolhida: ")
             if resposta_usuario == "1":
                 self.mostrar_professores()
@@ -19,6 +21,10 @@ class TelaProfessor():
                 self.cadastrar_professor()
             elif resposta_usuario == "3":
                 self.mostrar_opcoes_alterecao()
+            elif resposta_usuario == "4":
+                self.visualizar_professor()
+            elif resposta_usuario == "5":
+                self.calcular_professores_por_turno()
             else:
                 print("Opção inválida. Tente novamente.")
 
@@ -58,7 +64,7 @@ class TelaProfessor():
                 elif resposta_usuario == "3":
                     self.alterar_turno()
                 elif resposta_usuario == "4":
-                    return
+                    self.mostrar_menu_inicial()
                 else:
                     print("Opção inválida. Tente novamente.")
         else: 
@@ -114,5 +120,21 @@ class TelaProfessor():
         print("3 - noturno")
         turno = input("Digite o código do turno escolhido: ")
         return self.__controlador_professor.escolher_turno(turno)
+    
+    def visualizar_professor(self):
+        nome_professor = input("Qual professor você deseja visualizar: ")
+        professor = self.__controlador_professor.acessar_professor_pelo_nome(nome_professor)
+        print(f'Nome: {professor.nome}')
+        print(f'Email: {professor.email}')
+        #ERRO
+        # print(f'Telefone: {professor.numero_telefone}')
+        print(f'Salário: {professor.salario}')
+        print(f'Turno: {professor.turno}')
 
-        
+    def calcular_professores_por_turno(self):
+        matutino, vespertino, noturno = self.__controlador_professor.calcular_professores_por_turno()
+        print()
+        print("----- Professores por turno -----")
+        print(f'{matutino} professores trabalham no turno matutino')
+        print(f'{vespertino} professores trabalham no turno vespertino')
+        print(f'{noturno} professores trabalham no turno noturno')
