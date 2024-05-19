@@ -109,12 +109,16 @@ class ControladorAluno():
                 return ficha
         return None
     
-    def mostrar_dados_ficha(self, ficha):
-        print("-------- Dados da Ficha ----------")
-        print("ID da Ficha: ", ficha.id_ficha)
-        print("Descrição: ", ficha.descricao)
-        print("Professor Responsável: ", ficha.prof_responsavel.nome)
-        print("Treinos: ", ficha.treinos)
+    def mostrar_dados_ficha(self, id_ficha):
+        ficha = self.buscar_ficha(id_ficha)
+        if ficha:
+            print("-------- Dados da Ficha ----------")
+            print("ID da Ficha: ", ficha.id)
+            print("Descrição: ", ficha.descricao)
+            print("Professor Responsável: ", ficha.prof_responsavel.nome)
+            print("Treinos: ", ficha.treinos)
+        else:
+            print("Ficha não encontrada.")
         
 ############################ relátorios ####################################################
     def calcular_aluno_por_turno(self):
