@@ -30,21 +30,18 @@
 	 <i><strong>Poderá ser escolhido apenas um, tanto para professor quanto para aluno.</strong></i>
 
 ## Controlador
-- <p><strong>Controlador de aluno</strong> será responsável por mostrar os treinos contidos nas fichas do aluno e a matrícula do mesmo, retirar ou adicionar o aluno por turno, calcular a quantidade de aluno por turno e calcular aluno por turno</p>
+- <p><strong>Controlador de aluno</strong> será responsável por mostrar os treinos contidos nas fichas do aluno e a matrícula do mesmo, retirar ou adicionar o aluno por turno, calcular a quantidade de aluno por turno e calcular aluno por turno,vai definir o plano e a mensalidade baseada no plano escolhido, a data de início, a data de vencimento do pagamento e a data de término e calcular qual o plano mais vendido.</p>
 
 - <p><strong>Controlador da ficha</strong> será responsável por inserir o número de repetições e séries, inserir e retirar o treino da ficha, inserir o professor encarregado daquela ficha e calcular qual ficha é a mais utilizada.</p>
-
-- <p><strong>Controlador de matrícula</strong> vai definir o plano e a mensalidade baseada no plano escolhido, a data de início, a data de vencimento do pagamento e a data de término e calcular qual o plano mais vendido.</p>
 
 - <p><strong>Controlador de professor</strong> vai inserir e retirar o professor do turno (matutino, vespertino e noturno) e gerar um relatório de qual turno tem mais professores</p>
 
 
 ## Telas
-- <p><strong>Tela do aluno</strong> será um menu no qual o usuário irá escolher qual opção ele deseja: mostrar os treinos contidos na fichas e detalhes da matrícula.</p>
+- <p><strong>Tela do aluno</strong> será um menu no qual o usuário irá escolher qual opção ele deseja: mostrar os treinos contidos na fichas e detalhes da matrícula, escolher o  plano, turno</p>
 
 - <p><strong>Tela da ficha</strong> será um menu no qual o usuário irá escolher qual opção ele deseja: inserir o número de repetições e séries, inserir e retirar o treino da ficha, inserir o professor encarregado daquela ficha.</p>
 
-- <p><strong>Tela da matrícula</strong> será um menu no qual o usuário irá escolher qual opção ele deseja: escolher o  plano, inserir a data de início, a data de vencimento do pagamento e a data de término.</p>
 
 - <p><strong>Tela do professor</strong> será um menu no qual o usuário irá escolher qual opção ele deseja:  inserir ou retirar turno do professor e calcular o número de professores em um turno escolhido pelo usuário.</p>
 
