@@ -1,3 +1,4 @@
+from simple_chalk import chalk, cyan,cyanBright, bold
 from controllers.controladorProfessor import ControladorProfessor
 
 
@@ -8,7 +9,7 @@ class TelaProfessor():
     def mostrar_menu_inicial(self):
         while True:
             print()
-            print("--------- Professores ----------")
+            print(chalk.cyan.bold("--------- Professores ----------"))
             print("1 - Mostrar professores contratados")
             print("2 - Cadastrar novo professor")
             print("3 - Alterar professor já cadastrado")
@@ -50,13 +51,13 @@ class TelaProfessor():
         print()
         if self.__controlador_professor.professores:
             while True:
-                print("--------- Professores ----------")
-                print("Opções de alteração")
+                print(chalk.cyan.bold("--------- Professores ----------"))
+                print(chalk.bold("Opções de alteração"))
                 print("1 - cadastrar novo professor")
                 print("2 - excluir um professor do sistema")
                 print("3 - alterar turno de um professor cadastrado")
                 print("4 - voltar ao menu inicial")
-                resposta_usuario = input("Insira a opção escolhida: ")
+                resposta_usuario = input(chalk.bold("Insira a opção escolhida: "))
                 if resposta_usuario == "1":
                     self.cadastrar_professor()
                 elif resposta_usuario == "2":
@@ -66,9 +67,9 @@ class TelaProfessor():
                 elif resposta_usuario == "4":
                     self.mostrar_menu_inicial()
                 else:
-                    print("Opção inválida. Tente novamente.")
+                    print(chalk.bold("Opção inválida. Tente novamente."))
         else: 
-            print("Nenhum professor cadastrado")
+            print(chalk.bold("Nenhum professor cadastrado"))
 
     def cadastrar_professor(self):
         print()
@@ -80,9 +81,9 @@ class TelaProfessor():
         salario = input("salário: ")
         prof_cadastrado = self.__controlador_professor.cadastrar_professor(nome, telefone, email, turno, salario)
         if prof_cadastrado:
-            print(f'Professor(a) {nome} cadastrado com sucesso!')
+            print(chalk.bold(f'Professor(a) {nome} cadastrado com sucesso!'))
         else: 
-            print("Este professor já está cadastrado")
+            print(chalk.bold("Este professor já está cadastrado"))
         self.mostrar_menu_inicial()
         
 
@@ -95,7 +96,7 @@ class TelaProfessor():
         if professor_removido:
             print(f'Professor {nome} removido com sucesso!')
         else:
-            print("Professor não encontrado")
+            print(chalk.bold("Professor não encontrado"))
         self.mostrar_menu_inicial()
     
     def alterar_turno(self):
@@ -134,7 +135,7 @@ class TelaProfessor():
     def calcular_professores_por_turno(self):
         matutino, vespertino, noturno = self.__controlador_professor.calcular_professores_por_turno()
         print()
-        print("----- Professores por turno -----")
+        print(chalk.cyan.bold("----- Professores por turno -----"))
         print(f'{matutino} professores trabalham no turno matutino')
         print(f'{vespertino} professores trabalham no turno vespertino')
         print(f'{noturno} professores trabalham no turno noturno')

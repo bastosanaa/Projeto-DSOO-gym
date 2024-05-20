@@ -1,3 +1,4 @@
+from simple_chalk import chalk, magenta, bold
 from models.aluno import Aluno
 from controllers.controladorAluno import ControladorAluno
 from models.plano import Plano

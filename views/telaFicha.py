@@ -1,3 +1,4 @@
+from simple_chalk import chalk, magenta, bold
 from models.ficha import Ficha
 from controllers.controladorFicha import ControladorFicha
 
