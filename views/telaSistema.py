@@ -1,14 +1,15 @@
-from simple_chalk import chalk, magenta, bold
+from simple_chalk import chalk, magenta, red, bold
 
 class TelaSistema():
     def tela_opcoes(self):
         while True:
-            print(chalk.magenta.bold("---- Sistema BodyLab ----"))
+            print(chalk.magenta.bold("---- Sistema BodyLab 🎯💪 ----"))
             print(chalk.bold("Escolha sua opção:"))
             print("1 - Professores")
             print("2 - Alunos")
             print("3 - Fichas")
             opcao = int(input("Digite a opcao: "))
+            print(chalk.magenta.bold("-------------------------------"))
     
             if opcao not in [1,2,3]:
                 print()
@@ -16,4 +17,5 @@ class TelaSistema():
                 print()
                 continue
             return opcao
+        
         

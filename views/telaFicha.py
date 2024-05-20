@@ -23,7 +23,6 @@ class TelaFicha():
             print("1 - mostrar todas as fichas")
             print("2 - cadastrar ficha")
             print("3 - excluir ficha pelo id")
-            print("4 - Relatório de criação de fichas por professor ")
             print("0 - Voltar ao menu inicial")
             resposta_usuario = input("Insira a opção escolhida: ")
             print(chalk.blue("--------------------------"))
