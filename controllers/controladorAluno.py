@@ -8,10 +8,10 @@ from models.aluno import Aluno
 # from controllers.controladorMatricula import ControladorMatricula
 
 class ControladorAluno():
-    def __init__(self, controlador_sistema):
+    def __init__(self):
         self.__alunos = []
         self.__planos = [Plano.Diamond, Plano.Gold, Plano.Silver]
-        self.__contraladorFicha = ControladorFicha(self)
+        self.__controlador_ficha = ControladorFicha()
 
     @property
     def planos(self):
@@ -102,9 +102,9 @@ class ControladorAluno():
 
 ########################### ficha ##############################################
     
-    def buscar_ficha(self, id_ficha):
-        for ficha in self.__contraladorFicha.fichas:
-            if ficha.id_ficha == id_ficha:
+    def buscar_ficha(self, id_buscado):
+        for ficha in self.__controlador_ficha.fichas:
+            if ficha.id_ficha == id_buscado:
                 return ficha
         return None
     

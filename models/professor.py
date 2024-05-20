@@ -13,4 +13,5 @@ class Professor(Pessoa):
     
     @salario.setter
     def salario(self, salario):
-        self.__salario = salario
+        if isinstance(salario, int):
+            self.__salario = salario

@@ -5,7 +5,7 @@ from views.telaSistema import TelaSistema
 
 class TelaFicha():
     def __init__(self):
-        self.__controlador_ficha = ControladorFicha(self)
+        self.__controlador_ficha = ControladorFicha()
         self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):
@@ -18,6 +18,8 @@ class TelaFicha():
             print("4 - Relatório de criação de fichas por professor ")
             print("0 - Voltar ao menu inicial")
             resposta_usuario = input("Insira a opção escolhida: ")
+            print("--------------------------")
+            
             if resposta_usuario == "1":
                 self.mostar_fichas()
             elif resposta_usuario == "2":
@@ -38,6 +40,7 @@ class TelaFicha():
         print()
         if self.__controlador_ficha.fichas:
             for ficha in self.__controlador_ficha.fichas:
+                print(f'---- {ficha.id_ficha} ---')
                 print(f'{ficha.id_ficha} - {ficha.descricao} por {ficha.prof_responsavel.nome}')
         else:
             print('Nenhuma ficha cadastrada')

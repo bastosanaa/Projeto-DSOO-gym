@@ -1,4 +1,4 @@
-from simple_chalk import chalk, magenta, bold, greenBright
+from simple_chalk import chalk, bold, greenBright
 from models.aluno import Aluno
 from controllers.controladorAluno import ControladorAluno
 from models.plano import Plano
@@ -8,7 +8,7 @@ from models.turno import Turno
 
 class TelaAluno():
     def __init__(self):
-        self.__controlador_aluno = ControladorAluno(self)
+        self.__controlador_aluno = ControladorAluno()
         self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):

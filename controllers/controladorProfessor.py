@@ -2,8 +2,7 @@ from models.professor import Professor
 from models.turno import Turno
 
 class ControladorProfessor():
-    def __init__(self, controlador_sistema):
-        self.__controlador_sistema = controlador_sistema
+    def __init__(self):
         self.__professores = []
 
     @property
@@ -17,10 +16,10 @@ class ControladorProfessor():
         return None
 
 
-    def cadastrar_professor(self, nome, telefone, email, turno, salario):
+    def cadastrar_professor(self, nome, numero_telefone, email, turno, salario):
         if self.acessar_professor_pelo_nome(nome):
             return None
-        novo_professor = Professor(nome, telefone, email, turno, salario)
+        novo_professor = Professor(nome, numero_telefone, email, turno, salario)
         
         self.__professores.append(novo_professor)
         return novo_professor
