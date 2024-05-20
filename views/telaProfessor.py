@@ -31,7 +31,7 @@ class TelaProfessor():
             elif resposta_usuario == "5":
                 self.calcular_professores_por_turno()
             elif resposta_usuario == "0":
-                self.__tela_sistema.tela_opcoes()
+                break
             else:
                 print()
                 print(chalk.red("Opção inválida. Tente novamente. ❌"))

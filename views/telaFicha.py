@@ -11,13 +11,13 @@ class TelaFicha():
         self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):
-        if not self.__controlador_professor.professores:
-            print()
-            print(chalk.yellow("!!! Nenhum professor cadastrado !!!"))
-            print(chalk.bold("Obs: deve haver ao menos um professor cadastrado para que as fichas sejam manipuladas"))
-            print()
-            self.__tela_sistema.tela_opcoes()
         while True:
+            if not self.__controlador_professor.professores:
+                print()
+                print(chalk.yellow("!!! Nenhum professor cadastrado !!!"))
+                print(chalk.bold("Obs: deve haver ao menos um professor cadastrado para que as fichas sejam manipuladas"))
+                print()
+                break
             print()
             print(chalk.blue("-------- Fichas ----------"))
             print("1 - mostrar todas as fichas")
@@ -38,7 +38,7 @@ class TelaFicha():
                     continue
                 self.__controlador_ficha.excluir_ficha_pelo_id(id)
             elif resposta_usuario == "0":
-                self.__tela_sistema.tela_opcoes()
+                break
             else:
                 print(chalk.red("Opção inválida. Tente novamente. ❌"))
                 self.mostrar_menu_inicial()

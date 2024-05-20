@@ -12,34 +12,34 @@ class TelaAluno():
         self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):
-        print()
-        print(chalk.yellowBright.bold("----------- Aluno -------------"))
-        print("Escolha a opção:")
-        print("1 - Assuntos relacionados à matricula")
-        print("2 - Assuntos relacionados à ficha")
-        print("3 - Gerar relatórios")
-        print("4 - Listar alunos")
-        print("5 - Voltar para o menu inicial")
-        print("0 - Sair")
+        while True:
+            print()
+            print(chalk.yellowBright.bold("----------- Aluno -------------"))
+            print("Escolha a opção:")
+            print("1 - Assuntos relacionados à matricula")
+            print("2 - Assuntos relacionados à ficha")
+            print("3 - Gerar relatórios")
+            print("4 - Listar alunos")
+            print("5 - Voltar para o menu inicial")
+            print("0 - Sair")
 
-        opcao = int(input(chalk.bold("Escolha a opção: ")))
-        print(chalk.yellowBright.bold("-------------------------------"))
+            opcao = int(input(chalk.bold("Escolha a opção: ")))
+            print(chalk.yellowBright.bold("-------------------------------"))
 
-        if opcao == 1:
-            self.assuntos_relacionados_a_matricula()
-        elif opcao == 2:
-            self.assuntos_relacionados_a_ficha()
-        elif opcao == 3:
-            self.gerar_relatorios()
-        elif opcao == 4:
-            self.listar_alunos()
-        elif opcao == 5:
-            self.__tela_sistema.tela_opcoes()
-        elif opcao == 0:
-            exit(0)
-        else:
-            print("Opção inválida. Tente novamente.")
-            self.mostrar_menu_inicial()
+            if opcao == 1:
+                self.assuntos_relacionados_a_matricula()
+            elif opcao == 2:
+                self.assuntos_relacionados_a_ficha()
+            elif opcao == 3:
+                self.gerar_relatorios()
+            elif opcao == 4:
+                self.listar_alunos()
+            elif opcao == 5:
+                break
+            elif opcao == 0:
+                exit(0)
+            else:
+                print(chalk.red("Opção inválida. Tente novamente. ❌"))
 
     def assuntos_relacionados_a_matricula(self):
         print()
