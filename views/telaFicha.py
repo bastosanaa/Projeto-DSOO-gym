@@ -1,9 +1,11 @@
 from models.ficha import Ficha
 from controllers.controladorFicha import ControladorFicha
+from views.telaSistema import TelaSistema
 
 class TelaFicha():
     def __init__(self):
         self.__controlador_ficha = ControladorFicha(self)
+        self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):
         while True:
@@ -13,6 +15,7 @@ class TelaFicha():
             print("2 - cadastrar ficha")
             print("3 - excluir ficha pelo id")
             print("4 - Relatório de criação de fichas por professor ")
+            print("0 - Voltar ao menu inicial")
             resposta_usuario = input("Insira a opção escolhida: ")
             if resposta_usuario == "1":
                 self.mostar_fichas()
@@ -24,9 +27,11 @@ class TelaFicha():
                 if id == "0":
                     continue
                 self.__controlador_ficha.excluir_ficha_pelo_id(id)
+            elif resposta_usuario == "0":
+                self.__tela_sistema.tela_opcoes()
             else:
                 print("Opção inválida. Tente novamente.")
-                
+                self.mostrar_menu_inicial()
 
     def mostar_fichas(self):
         print()
@@ -35,6 +40,8 @@ class TelaFicha():
                 print(f'{ficha.id_ficha} - {ficha.descricao} por {ficha.prof_responsavel.nome}')
         else:
             print('Nenhuma ficha cadastrada')
+            self.mostrar_menu_inicial()
+        
 
 
     def criar_fichas(self):
@@ -53,6 +60,7 @@ class TelaFicha():
             treinos.append(treino)
             input('Ficha criada com sucesso!')
         return descricao, professor, treinos
+        self.mostrar_menu_inicial()
     
     def excluir_ficha_pelo_id(self):
         print()
@@ -66,3 +74,4 @@ class TelaFicha():
                 print(f"Ficha de id:{id} excluida com sucesso")
             else:
                 print("Ficha não encontrada")
+                self.mostrar_menu_inicial()

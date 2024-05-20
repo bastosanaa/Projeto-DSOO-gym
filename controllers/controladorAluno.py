@@ -115,13 +115,14 @@ class ControladorAluno():
             print("-------- Dados da Ficha ----------")
             print("ID da Ficha: ", ficha.id)
             print("Descrição: ", ficha.descricao)
-            print("Professor Responsável: ", ficha.prof_responsavel.nome)
+            print("Professor Responsável: ", ficha.professor.nome)
             print("Treinos: ", ficha.treinos)
         else:
             print("Ficha não encontrada.")
         
 ############################ relátorios ####################################################
-    def calcular_aluno_por_turno(self):
+
+    def calcula_aluno_por_turno(self):
         alunos_por_turno = {}
         for aluno in self.__alunos:
             turno = aluno.turno
@@ -143,4 +144,4 @@ class ControladorAluno():
                 if vendas_plano > quantidade_vendas:
                     quantidade_vendas = vendas_plano
                     plano_mais_vendido = plano
-        return plano_mais_vendido
+        print("O plano mais vendido da BODYLAB é: ", plano_mais_vendido)

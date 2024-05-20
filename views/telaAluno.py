@@ -1,11 +1,14 @@
 from models.aluno import Aluno
 from controllers.controladorAluno import ControladorAluno
 from models.plano import Plano
+from views.telaSistema import TelaSistema
+
 
 
 class TelaAluno():
     def __init__(self):
         self.__controlador_aluno = ControladorAluno(self)
+        self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):
         print()
@@ -15,7 +18,8 @@ class TelaAluno():
         print("2 - Assuntos relacionados à ficha")
         print("3 - Gerar relatórios")
         print("4 - Listar alunos")
-        print("0 - sair")
+        print("5 - Voltar para o menu inicial")
+        print("0 - Sair")
 
         opcao = int(input("Escolha a opção: "))
 
@@ -27,6 +31,8 @@ class TelaAluno():
             self.gerar_relatorios()
         elif opcao == 4:
             self.listar_alunos()
+        elif opcao == 5:
+            self.__tela_sistema.tela_opcoes()
         elif opcao == 0:
             exit(0)
         else:
@@ -50,7 +56,7 @@ class TelaAluno():
         elif opcao == 3:
             self.mostrar_dados_matricula()
         elif opcao == 4:
-            self.__alterar_dado_matricula()
+            self.alterar_dado_matricula()
         elif opcao == 0:
             self.mostrar_menu_inicial()
         else:
@@ -133,21 +139,30 @@ class TelaAluno():
         self.mostrar_menu_inicial()
 
     def alterar_dado_matricula(self):
-        id_matricula = int(input("Digite o código da matrícula (id_matricula): "))
         print("Escolha o dado que deseja alterar:")
         print("1 - Plano")
         print("2 - Turno")
         opcao = int(input("Escolha a opção: "))
 
         if opcao == 1:
-            plano = self.escolher_plano()
-            self.__controlador_aluno.alterar_plano(id_matricula, plano)
+            self.alterar_plano()
         elif opcao == 2:
-            turno = self.escolher_turno()
-            self.__controlador_aluno.alterar_turno(id_matricula, turno)
+            self.alterar_turno()
         else:
             print("Opção inválida. Tente novamente.")
             self.alterar_dado_matricula()
+        return self.assuntos_relacionados_a_matricula()
+    
+    def alterar_plano(self):
+        id_matricula = int(input("Digite o código da matrícula (id_matricula): "))
+        novo_plano = self.escolher_plano()
+        self.__controlador_aluno.alterar_plano(id_matricula, novo_plano)
+        return self.assuntos_relacionados_a_matricula()
+
+    def alterar_turno(self):
+        id_matricula = int(input("Digite o código da matrícula (id_matricula): "))
+        novo_turno = self.escolher_turno()
+        self.__controlador_aluno.alterar_turno(id_matricula, novo_turno)
         return self.assuntos_relacionados_a_matricula()
 
     def gerar_relatorios(self):
