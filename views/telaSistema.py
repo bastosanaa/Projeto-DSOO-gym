@@ -9,9 +9,11 @@ class TelaSistema():
             print("2 - Alunos")
             print("3 - Fichas")
             opcao = int(input("Escolha a opcao: "))
+    
             if opcao not in [1,2,3]:
                 print()
                 print("Opção inválida. Tente novamente.")
                 print()
                 continue
             return opcao
+        

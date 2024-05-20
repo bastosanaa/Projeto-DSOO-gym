@@ -1,10 +1,12 @@
 from simple_chalk import chalk, cyan,cyanBright, bold
 from controllers.controladorProfessor import ControladorProfessor
+from views.telaSistema import TelaSistema
 
 
 class TelaProfessor():
     def __init__(self):
         self.__controlador_professor = ControladorProfessor(self)
+        self.__tela_sistema = TelaSistema()
 
     def mostrar_menu_inicial(self):
         while True:
@@ -15,6 +17,7 @@ class TelaProfessor():
             print("3 - Alterar professor já cadastrado")
             print("4 - Vizualizar professor já cadastrado")
             print("5 - Relatório de professores por turno")
+            print("0 - Voltar ao menu inicial")
             resposta_usuario = input("Insira a opção escolhida: ")
             if resposta_usuario == "1":
                 self.mostrar_professores()
@@ -26,8 +29,11 @@ class TelaProfessor():
                 self.visualizar_professor()
             elif resposta_usuario == "5":
                 self.calcular_professores_por_turno()
+            elif resposta_usuario == "0":
+                self.__tela_sistema.tela_opcoes()
             else:
                 print("Opção inválida. Tente novamente.")
+                self.mostrar_menu_inicial()
 
     def mostrar_professores(self):
         print()

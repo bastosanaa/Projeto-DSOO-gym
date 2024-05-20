@@ -11,8 +11,7 @@ class Pessoa(ABC):
             self.__numero_telefone = numero_telefone
         if isinstance(email, str):
             self.__email = email
-        if isinstance(turno, Turno):
-            self.__turno = turno
+        self.__turno = turno
 
     @property
     def nome(self):
@@ -47,5 +46,4 @@ class Pessoa(ABC):
 
     @turno.setter
     def turno(self, turno):
-        if isinstance(turno, Turno):
             self.__turno = turno
