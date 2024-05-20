@@ -5,7 +5,7 @@ import random
 
 class ControladorFicha():
     def __init__(self):
-        self.__controlador_professor = ControladorProfessor(controlador_sistema)
+        self.__controlador_professor = ControladorProfessor()
         self.__fichas = []
 
     @property
