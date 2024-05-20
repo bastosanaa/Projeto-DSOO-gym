@@ -23,6 +23,7 @@ class ControladorProfessor():
         novo_professor = Professor(nome, telefone, email, turno, salario)
         
         self.__professores.append(novo_professor)
+        return novo_professor
 
     def remover_professor(self, nome, email):
         for professor in self.__professores:

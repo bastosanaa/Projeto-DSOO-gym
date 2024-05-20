@@ -1,4 +1,4 @@
-from simple_chalk import chalk, cyan,cyanBright, bold
+from simple_chalk import chalk, cyan, red, green, bold
 from controllers.controladorProfessor import ControladorProfessor
 from views.telaSistema import TelaSistema
 
@@ -18,7 +18,7 @@ class TelaProfessor():
             print("4 - Vizualizar professor já cadastrado")
             print("5 - Relatório de professores por turno")
             print("0 - Voltar ao menu inicial")
-            resposta_usuario = input("Insira a opção escolhida: ")
+            resposta_usuario = input(chalk.bold("Insira a opção escolhida: "))
             if resposta_usuario == "1":
                 self.mostrar_professores()
             elif resposta_usuario == "2":
@@ -32,7 +32,7 @@ class TelaProfessor():
             elif resposta_usuario == "0":
                 self.__tela_sistema.tela_opcoes()
             else:
-                print("Opção inválida. Tente novamente.")
+                print(chalk.red("Opção inválida. Tente novamente."))
                 self.mostrar_menu_inicial()
 
     def mostrar_professores(self):
@@ -43,7 +43,7 @@ class TelaProfessor():
                 print(f'{n_prof} - {professor.nome}')
                 n_prof += 1
         else:
-            print("Ainda não existem professores cadastrados")
+            print(chalk.bold("Ainda não existem professores cadastrados"))
         resposta_usuario = input("deseja fazer alterações na lista de professores cadastrados? (s / n)")
         if resposta_usuario == "s":
             self.mostrar_opcoes_alterecao()
@@ -73,13 +73,13 @@ class TelaProfessor():
                 elif resposta_usuario == "4":
                     self.mostrar_menu_inicial()
                 else:
-                    print(chalk.bold("Opção inválida. Tente novamente."))
+                    print(chalk.red("Opção inválida. Tente novamente."))
         else: 
             print(chalk.bold("Nenhum professor cadastrado"))
 
     def cadastrar_professor(self):
         print()
-        print("insira as informações de cadastro do professor:")
+        print(chalk.bold("insira as informações de cadastro do professor:"))
         nome = input("nome: ")
         telefone = input("telefone: ")
         email = input("email: ")
@@ -87,7 +87,7 @@ class TelaProfessor():
         salario = input("salário: ")
         prof_cadastrado = self.__controlador_professor.cadastrar_professor(nome, telefone, email, turno, salario)
         if prof_cadastrado:
-            print(chalk.bold(f'Professor(a) {nome} cadastrado com sucesso!'))
+            print(chalk.green(f'Professor(a) {nome} cadastrado com sucesso!'))
         else: 
             print(chalk.bold("Este professor já está cadastrado"))
         self.mostrar_menu_inicial()
@@ -95,29 +95,30 @@ class TelaProfessor():
 
     def remover_professor(self):
         print()
-        print("Insira as informações do professor a ser removido:")
+        print(chalk.bold("Insira as informações do professor a ser removido:"))
         nome = input("Nome: ")
         email = input("Email: ")
         professor_removido = self.__controlador_professor.remover_professor(nome, email)
         if professor_removido:
-            print(f'Professor {nome} removido com sucesso!')
+            print(chalk.green(f'Professor {nome} removido com sucesso!'))
         else:
-            print(chalk.bold("Professor não encontrado"))
+            print(chalk.red("Professor não encontrado"))
         self.mostrar_menu_inicial()
     
     def alterar_turno(self):
         print()
         prof_cadastrado = None
         while not prof_cadastrado:
-            prof_input = input("Insira o nome de um professor para alterar turnos: ")
+            prof_input = input(chalk.bold("Insira o nome de um professor para alterar turnos: "))
             prof_cadastrado = self.__controlador_professor.acessar_professor_pelo_nome(prof_input)
             if not prof_cadastrado:
-                print("Professor nao encontrado")
+                print(chalk.red("Professor nao encontrado"))
         print(f'O turno atual de {prof_cadastrado.nome} é {prof_cadastrado.turno}')
         continuar = input("continuar alteração de turno? (s / n)")
         if continuar == "s":
             turno = self.selecionar_turno()
             self.__controlador_professor.alterar_turno(prof_cadastrado,turno)
+            print(chalk.green("Professor alterado com sucesso!"))
             print(f'O turno atual de {prof_cadastrado.nome} é {prof_cadastrado.turno}')
         self.mostrar_menu_inicial()
 
