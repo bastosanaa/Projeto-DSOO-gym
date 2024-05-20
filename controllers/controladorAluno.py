@@ -32,8 +32,8 @@ class ControladorAluno():
         aluno = Aluno(nome_aluno, numero_telefone, email, turno, None)
         aluno_existente = self.get_aluno(aluno.nome)
         if aluno_existente:
-            print("Aluno já matriculado.")
-            return
+                print("Aluno já matriculado.")
+                return
 
         id_matricula = random.randint(1000, 9999)
         mensalidade = self.definir_mensalidade_de_acordo_com_plano(plano)
@@ -61,9 +61,8 @@ class ControladorAluno():
         for aluno in self.__alunos:
             if aluno.matricula.id_matricula == id_matricula:
                 self.__alunos.remove(aluno)
-                print("Matrícula cancelada com sucesso.")
-            else:
-                print("Matrícula não encontrada.")
+                return aluno
+        return None
 
     def buscar_matricula_por_id(self, id_matricula):
         for aluno in self.__alunos:
@@ -85,18 +84,18 @@ class ControladorAluno():
         else:
             print("Matrícula não encontrada.")
 
-    def alterar_plano(self, id_matricula, novo_plano):
+    def alterar_plano(self, id_matricula, plano_novo):
         matricula = self.buscar_matricula_por_id(id_matricula)
         if matricula:
-            matricula.plano = novo_plano
+            matricula.plano = plano_novo
             print("Plano alterado com sucesso.")
         else:
             print("Matrícula não encontrada.")
 
-    def alterar_turno(self, id_matricula, novo_turno):
+    def alterar_turno(self, id_matricula, turno_novo):
         matricula = self.buscar_matricula_por_id(id_matricula)
         if matricula:
-            matricula.turno = novo_turno
+            matricula.turno = turno_novo
             print("Turno alterado com sucesso.")
         else:
             print("Matrícula não encontrada.")
@@ -131,7 +130,7 @@ class ControladorAluno():
             else:
                 alunos_por_turno[turno] = 1
         for turno, quantidade in alunos_por_turno.items():
-            print(f"Turno: {turno} - Quantidade de alunos: {quantidade}")
+            return f"Turno: {turno} - Quantidade de alunos: {quantidade}"
 
     def calcula_plano_mais_vendido(self):
         plano_mais_vendido = ''
@@ -139,9 +138,10 @@ class ControladorAluno():
         for plano in self.__planos:
             vendas_plano = 0
             for aluno in self.__alunos:
-                if aluno.matricula.plano == plano:
+                aluno_plano = aluno.matricula.plano 
+                if aluno_plano == plano:
                     vendas_plano += 1
-                if vendas_plano > quantidade_vendas:
-                    quantidade_vendas = vendas_plano
-                    plano_mais_vendido = plano
-        print("O plano mais vendido da BODYLAB é: ", plano_mais_vendido)
+            if vendas_plano > quantidade_vendas:
+                quantidade_vendas = vendas_plano
+                plano_mais_vendido = plano
+        return f"Plano mais vendido: {plano_mais_vendido.name}"

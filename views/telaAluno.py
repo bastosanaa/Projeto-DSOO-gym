@@ -1,9 +1,9 @@
-from simple_chalk import chalk, magenta, bold
+from simple_chalk import chalk, magenta, bold, greenBright
 from models.aluno import Aluno
 from controllers.controladorAluno import ControladorAluno
 from models.plano import Plano
 from views.telaSistema import TelaSistema
-
+from models.turno import Turno
 
 
 class TelaAluno():
@@ -13,7 +13,7 @@ class TelaAluno():
 
     def mostrar_menu_inicial(self):
         print()
-        print("-------- Aluno ----------")
+        print(chalk.greenBright.bold("-------- Aluno ----------"))
         print("Escolha a opção:")
         print("1 - Assuntos relacionados à matricula")
         print("2 - Assuntos relacionados à ficha")
@@ -22,7 +22,7 @@ class TelaAluno():
         print("5 - Voltar para o menu inicial")
         print("0 - Sair")
 
-        opcao = int(input("Escolha a opção: "))
+        opcao = int(input(chalk.bold("Escolha a opção: ")))
 
         if opcao == 1:
             self.assuntos_relacionados_a_matricula()
@@ -49,7 +49,7 @@ class TelaAluno():
         print("3 - Mostrar dados da matrícula")
         print("4 - Alterar algum dado da matrícula")
         print("0 - retornar")
-        opcao = int(input("Escolha a opção: "))
+        opcao = int(input(chalk.bold("Escolha a opção: ")))
         if opcao == 1:
             self.realizar_matricula()
         elif opcao == 2:
@@ -71,7 +71,7 @@ class TelaAluno():
         print("1 - Mostrar treinos da ficha")
         print("0 - retornar")
 
-        opcao = int(input("Escolha a opção: "))
+        opcao = int(input(chalk.bold("Escolha a opção: ")))
 
         if opcao == 1:
             self.mostrar_dados_ficha()
@@ -91,26 +91,12 @@ class TelaAluno():
         self.__controlador_aluno.realizar_matricula(nome_aluno, numero_telefone, email , plano, turno)
         return self.assuntos_relacionados_a_matricula()
 
-    def escolher_turno(self):
-        turnos = {1: "Manhã", 2: "Tarde", 3: "Noite"}
-        print("Escolha o turno:")
-
-        for numero_turno, turno in turnos.items():
-            print(f"{numero_turno} - {turno}")
-
-        turno = int(input("Escolha o turno: "))
-        if turno not in turnos:
-            print("Operação inválida. Por favor, esoclha um número de 1 a 3.")
-            return self.escolher_turno()
-        else:
-            return turnos[turno]
-
     def escolher_plano(self):
-        planos = {1: "Gold", 2: "Silver", 3: "Diamond"}
+        planos = {1: Plano.Gold, 2: Plano.Silver, 3: Plano.Diamond}
         print("Escolha o plano: ")
 
         for numero_plano, plano in planos.items():
-            print(f"{numero_plano} - {plano}")
+            print(f"{numero_plano} - {plano.name}")
 
         plano = int(input("Escolha o plano: "))
         if plano not in planos:
@@ -118,10 +104,28 @@ class TelaAluno():
             return self.escolher_plano()
         else:
             return planos[plano]
+
+    def escolher_turno(self):
+        turnos = {1: Turno.matutino, 2: Turno.vespertino, 3: Turno.noturno}
+        print("Escolha o turno:")
+
+        for numero_turno, turno in turnos.items():
+            print(f"{numero_turno} - {turno.name}")
+
+        turno = int(input("Escolha o turno: "))
+        if turno not in turnos:
+            print("Operação inválida. Por favor, esoclha um número de 1 a 3.")
+            return self.escolher_turno()
+        else:
+            return turnos[turno]
     
     def cancelar_matricula(self):
         id_matricula = input("Digite o código da matrícula (id_matricula): ")
-        self.__controlador_aluno.cancelar_matricula(int(id_matricula))
+        matricula_cancelada = self.__controlador_aluno.cancelar_matricula(int(id_matricula))
+        if matricula_cancelada:
+            print("Matrícula cancelada com sucesso.")
+        else:
+            print("Matrícula não encontrada.")
         return self.assuntos_relacionados_a_matricula()
 
     def mostrar_dados_matricula(self):
@@ -140,31 +144,26 @@ class TelaAluno():
         self.mostrar_menu_inicial()
 
     def alterar_dado_matricula(self):
+        id_matricula = int(input("Digite o código da matrícula (id_matricula): "))
         print("Escolha o dado que deseja alterar:")
         print("1 - Plano")
         print("2 - Turno")
-        opcao = int(input("Escolha a opção: "))
+        print("0 - Cancelar Operação")
+        opcao = int(input(chalk.bold("Escolha a opção: ")))
 
         if opcao == 1:
-            self.alterar_plano()
+            plano_novo = self.escolher_plano()
+            self.__controlador_aluno.alterar_plano(id_matricula, plano_novo)
         elif opcao == 2:
-            self.alterar_turno()
+            turno_novo = self.escolher_turno()
+            self.__controlador_aluno.alterar_turno(id_matricula, turno_novo)
+        elif opcao == 0:
+            self.mostrar_menu_inicial()
         else:
             print("Opção inválida. Tente novamente.")
             self.alterar_dado_matricula()
         return self.assuntos_relacionados_a_matricula()
     
-    def alterar_plano(self):
-        id_matricula = int(input("Digite o código da matrícula (id_matricula): "))
-        novo_plano = self.escolher_plano()
-        self.__controlador_aluno.alterar_plano(id_matricula, novo_plano)
-        return self.assuntos_relacionados_a_matricula()
-
-    def alterar_turno(self):
-        id_matricula = int(input("Digite o código da matrícula (id_matricula): "))
-        novo_turno = self.escolher_turno()
-        self.__controlador_aluno.alterar_turno(id_matricula, novo_turno)
-        return self.assuntos_relacionados_a_matricula()
 
     def gerar_relatorios(self):
         print("---------------- Relatórios ----------------")
@@ -172,12 +171,12 @@ class TelaAluno():
         print("2 - Calcular plano mais vendido")
         print("0 - retornar")
 
-        opcao = int(input("Escolha a opção: "))
+        opcao = int(input(chalk.bold("Escolha a opção: ")))
 
         if opcao == 1:
-            self.__controlador_aluno.calcula_aluno_por_turno()
+            print(self.__controlador_aluno.calcula_aluno_por_turno())
         elif opcao == 2:
-            self.__controlador_aluno.calcula_plano_mais_vendido()
+            print(self.__controlador_aluno.calcula_plano_mais_vendido())
         elif opcao == 0:
             self.mostrar_menu_inicial()
         else:
