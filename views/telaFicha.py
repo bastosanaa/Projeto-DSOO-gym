@@ -28,7 +28,7 @@ class TelaFicha():
             print(chalk.blue("--------------------------"))
             
             if resposta_usuario == "1":
-                self.mostar_fichas()
+                self.mostrar_fichas()
             elif resposta_usuario == "2":
                 self.criar_fichas()
             elif resposta_usuario == "3":
@@ -43,7 +43,7 @@ class TelaFicha():
                 print(chalk.red("Opção inválida. Tente novamente. ❌"))
                 self.mostrar_menu_inicial()
 
-    def mostar_fichas(self):
+    def mostrar_fichas(self):
         print()
         if self.__controlador_ficha.fichas:
             for ficha in self.__controlador_ficha.fichas:
@@ -80,7 +80,7 @@ class TelaFicha():
         print()
         menu = input("deseja exibir as fichas? (s / n)")
         if menu == "s":
-            self.mostar_fichas()
+            self.mostrar_fichas()
         else:
             print()
             id = input("Qual o id da ficha que você deseja excluir?")

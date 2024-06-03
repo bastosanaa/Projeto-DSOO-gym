@@ -1,9 +1,11 @@
 from models.professor import Professor
 from models.turno import Turno
+from views.telaProfessor import TelaProfessor
 
 class ControladorProfessor():
     def __init__(self):
         self.__professores = []
+        self.__tela_professor = TelaProfessor()
 
     @property
     def professores(self):

@@ -1,12 +1,15 @@
 from simple_chalk import chalk, cyan, red, green, bold
 from controllers.controladorProfessor import ControladorProfessor
 from views.telaSistema import TelaSistema
+from telaAbstrata import TelaAbstrata
 
 
-class TelaProfessor():
+class TelaProfessor(TelaAbstrata):
     def __init__(self):
         self.__controlador_professor = ControladorProfessor()
         self.__tela_sistema = TelaSistema()
+
+
 
     def mostrar_menu_inicial(self):
         while True:
@@ -91,9 +94,10 @@ class TelaProfessor():
                 print(chalk.red("Valor inserido é inválido, tente novamente: ❌"))
         if prof_cadastrado:
             print(chalk.green(f'Professor(a) {nome} cadastrado com sucesso! ✅'))
+            exit()
         else:
             print(chalk.bold("Este professor já está cadastrado"))
-        self.mostrar_menu_inicial()
+        
         
 
     def remover_professor(self):

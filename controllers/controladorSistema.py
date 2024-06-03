@@ -6,6 +6,7 @@ from views.telaFicha import TelaFicha
 class ControladorSistema:
     def __init__(self):
 
+        # aqui deve haver a conexao com os controladores e estes chamarao suas respectivas telas para recebimento das entradas do usuario
         self.__tela_sistema = TelaSistema()
         self.__tela_professor = TelaProfessor()
         self.__tela_aluno = TelaAluno()
