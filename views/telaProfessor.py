@@ -131,9 +131,9 @@ class TelaProfessor():
         print("1 - matutino")
         print("2 - vespertino")
         print("3 - noturno")
-        turno = input(chalk.bold("Digite o código do turno escolhido: "))
+        turno = int(input(chalk.bold("Digite o código do turno escolhido: ")))
         if turno in [1,2,3]:
-            return self.__controlador_professor.escolher_turno(turno)
+            return self.__controlador_professor.escolher_turno((turno))
         raise ValueError
     
     def visualizar_professor(self):
